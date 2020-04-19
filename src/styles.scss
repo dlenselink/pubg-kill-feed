@@ -1,0 +1,81 @@
+@import "utils/constants";
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.background {
+  background-color: $DarkGrey;
+  height: 100vh;
+  width: 100vw;
+}
+
+.header {
+  align-items: center;
+  background-color: black;
+  color: $AzureWhite;
+  display: flex;
+  font-size: calc(10px + 1vmin);
+  flex-direction: column;
+  height: 35px;
+  justify-content: center;
+  padding: 1em;
+  width: 100%;
+}
+
+.searchbar {
+  margin-bottom: auto;
+  margin-top: auto;
+  background-color: #353b48;
+  border-radius: 30px;
+  padding: 0 10px;
+}
+
+.searchbar-icon {
+  transform: translate(0, 20%);
+}
+
+.searchbar-input {
+  color: white;
+  border: 0;
+  outline: 0;
+  background: none;
+  width: 0;
+  caret-color: transparent;
+  line-height: 40px;
+  transition: width 0.3s ease;
+}
+
+.searchbar:hover > .searchbar-input {
+  caret-color: $AzureWhite;
+  padding: 0 10px;
+  transition: width 0.3s ease;
+  width: 300px;
+}
+
+.searchbar:hover > .search_icon {
+  background: white;
+  color: #e74c3c;
+}
+
+@media (max-width: $Mobile) {
+  .searchbar-icon {
+    width: 1.5em;
+    height: 1.5em;
+  }
+  .searchbar:hover > .searchbar-input {
+    caret-color: red;
+    padding: 0 10px;
+    transition: width 0.3s ease;
+    width: 50vw;
+  }
+}
