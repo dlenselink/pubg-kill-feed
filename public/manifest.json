@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "PUBG Kill Feed",
+  "name": "PUBG Kill Feed: A Dynamic PUBG API App",
   "icons": [
     {
       "src": "favicon.ico",

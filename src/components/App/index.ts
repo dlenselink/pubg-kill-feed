@@ -1,6 +1,5 @@
 export { App } from "./component";
-export interface IProps {};
-export interface IState {
+export interface PlayerInfo {
   playerName: string;
   playerId: string;
   recentMatches: Array<string>;

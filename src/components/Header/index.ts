@@ -1,3 +1,7 @@
+import { PlayerInfo } from "../App";
 export { Header } from "./component";
-export interface IProps { updatePlayer: (newPlayer: string) => void };
-export interface IState {};
+export interface IProps {
+  isLoading: boolean;
+  playerInfo: PlayerInfo;
+  updatePlayerInfo: (playerInfo: any) => void;
+};

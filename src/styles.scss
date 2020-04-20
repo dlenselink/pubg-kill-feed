@@ -15,12 +15,14 @@ code {
 
 .background {
   background-color: $DarkGrey;
+  display: flex;
   height: 100vh;
   width: 100vw;
 }
 
 .header {
   align-items: center;
+  animation: fadeIn .5s ease;
   background-color: black;
   color: $AzureWhite;
   display: flex;
@@ -30,6 +32,36 @@ code {
   justify-content: center;
   padding: 1em;
   width: 100%;
+}
+
+.hidden {
+  display: none;
+}
+
+.is-loading {
+  display: flex !important;
+  animation: fadeInFaster 1s ease;
+  animation-duration: 2s;
+}
+
+.loader-image {
+  width: 500px;
+  height: 375px;
+  position: fixed;
+  left: 50%;
+  top:  50%;
+  margin-left: -250px; /* 500px / 2 = 250px */
+  margin-top:  -250px;
+}
+
+.loader-image-wrapper {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  position: fixed;
+  opacity: 0;
+  z-index: -1;
 }
 
 .searchbar {
@@ -68,6 +100,11 @@ code {
 }
 
 @media (max-width: $Mobile) {
+  .loader-image {
+    width: 100vw;
+    height: auto;
+    margin-left: -50%;
+  }
   .searchbar-icon {
     width: 1.5em;
     height: 1.5em;
@@ -79,3 +116,27 @@ code {
     width: 50vw;
   }
 }
+
+@keyframes fadeIn { 
+  0% {
+    opacity: 0;
+    z-index: 1;
+  } 
+  100% { 
+    opacity: 1;
+  } 
+}
+
+@keyframes fadeInFaster { 
+  0% {
+    opacity: 0;
+    z-index: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% { 
+    opacity: 0;
+    z-index: 1;
+  } 
+} 
