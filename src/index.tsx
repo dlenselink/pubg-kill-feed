@@ -1,10 +1,11 @@
-import { App } from './components/App/component';
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import * as ReactDOM from "react-dom";
+import { App } from "./components/App";
 
-ReactDOM.render(
-  <React.StrictMode>
+const Index = () => {
+  return (
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+  );
+};
+
+ReactDOM.render(<Index />, document.getElementById("root"));

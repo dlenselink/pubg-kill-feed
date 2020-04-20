@@ -4,14 +4,11 @@ To run the project follow these steps:
 
 1) Clone the repository from Github.
 
-2) Contact the app developer for the .env file. Once received, place the .env at the root of the project.
+2) Either request your own PUBG API key or contact dlenselink for the .env file that contains the PUBG API Key as `PUBG_API_KEY=`. Once received, place the .env at the root of the project.
 
-3) In a terminal with this project as your working directory, run the following commands:
+3) If this is the first time running the app on your machine or package.json was updated, run the `npm i` command in a terminal with this project as your working directory.
 
-  - `yarn prepare`
-  - `yarn start`
-
-4) The output will be served from http://localhost:3000 .
+4) In that same terminal, run the `npm start` command.
 
 ## Using the App
 
@@ -23,6 +20,8 @@ The app is currently not compatible with touchscreen devices.
 
 - v0.0.1: Initial build of app using React Class components
 - v0.0.2: Refactored build of the app featuring React Hooks and const-based components. This version added the loading screen, player info logging to console, and basic error handling.
+- v0.0.3: Optimized packages, added yarn prepare command, significantly updated README.
+- v0.0.4: Complete project overhaul: started from scratch without create-react-app, switched over to npm and restructured the app to use Hooks and the Context API for global state management.
 
 ## About
 

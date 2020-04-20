@@ -1,23 +1,23 @@
-import React from "react";
-import $ from "jquery";
-import { IProps } from "./index";
+import React, { useContext } from "react";
+import { GlobalContext } from "../App";
 import * as API from "../API";
+import $ from "jquery";
 
-export const Header = (props: IProps) => {
+export const Header = () => {
+  const globalContext = useContext(GlobalContext);
+  
 	const handleKeyPress = async (event: any) => {
     const searchbarInput: JQuery<HTMLElement> = $(".searchbar-input");
-		if (searchbarInput.val() && searchbarInput.is(':hover') === true && event.key === 'Enter') {
+		if (searchbarInput.val() && searchbarInput.is(":hover") === true && event.key === "Enter") {
+      globalContext.setIsLoading(true);
       const playerName = String(searchbarInput.val());
       const playerInfo = await API.getPlayerInfo(playerName);
-      props.updatePlayerInfo(playerInfo);
+      console.log(playerInfo);
     }
   };
-  let header = "header";
-  if (props.isLoading) {
-    header += " hidden";
-  }
+
   return(
-    <div className={header}>
+    <div className="header">
       <div className="searchbar">
         <input className="searchbar-input" name="searchbarInput" onKeyPress={handleKeyPress} placeholder="Search..." type="text" />
         <svg className="bi bi-search searchbar-icon" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
