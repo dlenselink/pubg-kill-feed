@@ -7,25 +7,20 @@ export const Header = () => {
   const globalContext = useContext(GlobalContext);
 
   const isTouchDevice = () => {
-    const touchSupport =
-      "onstart" in window ||
-      navigator.maxTouchPoints > 0 ||
-      navigator.msMaxTouchPoints > 0;
-    if (touchSupport) {
-      return true;
-    } else {
-      return false;
-    }
+    const touchSupport = "onstart" in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+    if (touchSupport) return true;
   };
   
 	const handleKeyPress = async (event: any) => {
     const searchbarInput: JQuery<HTMLElement> = $("input[name='searchbarInput']");
-		if (searchbarInput.val() && searchbarInput.is(":hover") === true && event.key === "Enter") {
+    const header: JQuery<HTMLElement> = $(".header");
+		if (searchbarInput.val() && header.is(":hover") === true && event.key === "Enter") {
       globalContext.setIsLoading(true);
       const playerName = String(searchbarInput.val());
       const playerInfo = await API.getPlayerInfo(playerName);
       const seasonList = await API.getSeasonList();
       console.log(seasonList);
+      console.log("isTouchDevice: " + (isTouchDevice() === true));
     }
   };
 

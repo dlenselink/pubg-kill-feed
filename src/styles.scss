@@ -15,8 +15,8 @@ body {
   width: 100vw;
   
   &:before {
-    /* background: url("/public/background.png") no-repeat center center fixed; */
-    background: white;
+    background: url("/public/background.png") no-repeat center center fixed;
+    // background: white;
     background-size: cover;
     bottom: 0px;
     content: "";
@@ -27,7 +27,6 @@ body {
     top: 0px;
     z-index: -1;
     -webkit-background-size: cover;
-    -moz-background-size: cover;
     -o-background-size: cover;
   }
 }
@@ -115,18 +114,19 @@ body {
   }
 
   .header {
-    height: 21px;
-
     .searchbar {
       height: 32px;
-      padding: 8px;
+      padding: 7px 8px;
+      transition: width 0.3s ease;
 
-      &:hover {
-        .input {
-          caret-color: black;
-          padding: 0 10px;
-          transition: width 0.3s ease;
-          width: 50vw;
+      @media(hover: hover) and (pointer: fine) {
+        &:hover {
+          .input {
+            caret-color: black;
+            padding: 0 10px;
+            transition: width 0.3s ease;
+            width: 50vw;
+          }
         }
       }
       .icon {
