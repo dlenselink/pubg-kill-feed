@@ -28,7 +28,10 @@ export const App = () => {
 	[isLoading]);
 
 	return(
-		<GlobalContext.Provider value={{ isLoading, setIsLoading }}>
+		<GlobalContext.Provider value={{
+			isLoading,
+			setIsLoading,
+		}}>
 			<div className="app">
 				<Loader />
 				<Header />

@@ -12,7 +12,8 @@ export const Header = () => {
       globalContext.setIsLoading(true);
       const playerName = String(searchbarInput.val());
       const playerInfo = await API.getPlayerInfo(playerName);
-      console.log(playerInfo);
+      const seasonList = await API.getSeasonList();
+      console.log(seasonList);
     }
   };
 

@@ -12,7 +12,7 @@ To run the project follow these steps:
 
 ## Using the App
 
-Currently the only functionality is that the main player info is logged to the console upon a successful search. To use the search, hover over the magnifying glass icon, then enter a PUBG player name and hit the Enter key. After the loading animation is done, check either the console or LocalStorage for player information. The search can be used any number of times. Future functionality will include player season stats, lifetime stats, and a live feed of all combat encounters (kills, knockouts, deaths).
+Currently the only functionality is that the main player info is logged to the console upon a successful search. To use the search, hover over the magnifying glass icon, then enter a PUBG player name and hit the Enter key. After the loading animation is done, check the console for player information. The search can be used any number of times. Future functionality will include player season stats, lifetime stats, and a live feed of all combat encounters (kills, knockouts, deaths).
 
 The app is currently not compatible with touchscreen devices.
 
