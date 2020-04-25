@@ -1,0 +1,15 @@
+[context.production]
+  publish = "dist"
+  command = "npm run build"
+  environment = {PUBG_API_KEY = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI5ZDQyM2U3MC0xYzQyLTAxMzYtMWU4OS0wZGZjNWE5NDMxN2YiLCJpc3MiOiJnYW1lbG9ja2VyIiwiaWF0IjoxNTIzMDcyMTE3LCJwdWIiOiJibHVlaG9sZSIsInRpdGxlIjoicHViZyIsImFwcCI6InB1YmctcGVyZmVjdCIsInNjb3BlIjoiY29tbXVuaXR5IiwibGltaXQiOjEwfQ.dvGsAk4joXdvaxFfWrfdxeNqfDc46mu2gtkv_UM_pxY"}
+	
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+		cache-control = '''
+		max-age=0,
+		no-cache,
+		no-store,
+		must-revalidate'''
