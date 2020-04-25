@@ -4,11 +4,16 @@ body {
   font-family: "Roboto", "Helvetica Neue", sans-serif;
   margin: 0;
   -webkit-font-smoothing: antialiased;
+
+  input[type="text"] {
+    font-size: inherit;
+  }
 }
 
 .app {
   color: black;
   display: flex;
+  font-size: 16px;
   height: 100vh;
   justify-content: center;
   position: relative;
@@ -16,7 +21,6 @@ body {
   
   &:before {
     background: url("/public/background.png") no-repeat center center fixed;
-    // background: white;
     background-size: cover;
     bottom: 0px;
     content: "";
@@ -36,7 +40,6 @@ body {
   animation: fadeIn .5s ease;
   background-color: black;
   display: flex;
-  font-size: calc(10px + 1vmin);
   flex-direction: column;
   height: 26px;
   justify-content: center;
@@ -47,9 +50,7 @@ body {
     align-items: center;
     background-color: white;
     border-radius: 20px;
-    margin-bottom: auto;
-    margin-top: auto;
-    padding: 2px 10px;
+    padding: 7px 8px;
 
     &:hover {
       .input {
@@ -62,14 +63,13 @@ body {
     .icon {
       color: black;
       height: 1em;
-      transform: translate(-2%, 25%);
+      transform: translate(-5%, 15%);
       width: 1em;
     }
     .input {
       background: none;
       border: 0;
       caret-color: transparent;
-      line-height: 2.5em;
       outline: 0;
       transition: width 0.3s ease;
       width: 0;
@@ -116,7 +116,6 @@ body {
   .header {
     .searchbar {
       height: 32px;
-      padding: 7px 8px;
       transition: width 0.3s ease;
 
       @media(hover: hover) and (pointer: fine) {
