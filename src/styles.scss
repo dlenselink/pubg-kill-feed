@@ -71,6 +71,7 @@ body {
       border: 0;
       caret-color: transparent;
       outline: 0;
+      overflow: hidden;
       transition: width 0.3s ease;
       width: 0;
     }
