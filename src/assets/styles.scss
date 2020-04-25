@@ -1,4 +1,11 @@
-@import "./constants";
+/* * * Breakpoints * * */
+$Mobile: 575px;
+
+/* * * * Colors * * * */
+$MintGreen: #00eaa8;
+$RoyalBlue: #0042ea;
+$ShadowBlack: #00000080;
+$TealBlue: #00b6ea;
 
 body {
   font-family: "Roboto", "Helvetica Neue", sans-serif;
@@ -20,7 +27,7 @@ body {
   width: 100vw;
   
   &:before {
-    background: url("/src/assets/background.png") no-repeat center center fixed;
+    background: url("./background.png") no-repeat center center fixed;
     background-size: cover;
     bottom: 0px;
     content: "";
@@ -118,20 +125,22 @@ body {
     .searchbar {
       height: 32px;
       transition: width 0.3s ease;
-
-      @media(hover: hover) and (pointer: fine) {
-        &:hover {
-          .input {
-            padding: 0 10px;
-            transition: width 0.3s ease;
-            width: 50vw;
+    
+      @media (pointer: fine) {
+        @media(hover: hover) {
+          &:hover {
+            .input {
+              padding: 0 10px;
+              transition: width 0.3s ease;
+              width: 50vw;
+            }
           }
         }
       }
       .icon {
-        height: 1em;
+        // height: 1em;
         transform: translate(-5%, 15%);
-        width: 1em;
+        // width: 1em;
       }
       .input {
         line-height: 1em;

@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import { Loader } from "Components/Loader";
 import { Header } from "Components/Header";
-import "../../styles.scss";
+import "Assets/styles.scss";
 
 interface IGlobalContext {
   isLoading: boolean;
