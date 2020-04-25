@@ -19,6 +19,7 @@ export const Header = () => {
       (header.is(":hover") || searchbarInput.is(":focus")) &&
       event.key === "Enter"
     ) {
+      searchbarInput.blur();
       globalContext.setIsLoading(true);
       const playerName = String(searchbarInput.val());
       const playerInfo = await API.getPlayerInfo(playerName);

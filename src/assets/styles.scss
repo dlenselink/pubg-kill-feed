@@ -5,6 +5,7 @@ $Mobile: 575px;
 $MintGreen: #00eaa8;
 $RoyalBlue: #0042ea;
 $ShadowBlack: #00000080;
+$ShadowGrey: #00000040;
 $TealBlue: #00b6ea;
 
 body {
@@ -46,11 +47,11 @@ body {
   align-items: center;
   animation: fadeIn .5s ease;
   background-color: white;
-  box-shadow: 2px 2px 4px $ShadowBlack;
+  box-shadow: 2px 2px 4px $ShadowGrey;
   color: $ShadowBlack;
   display: flex;
   flex-direction: column;
-  height: 26px;
+  height: 22px;
   justify-content: center;
   padding: .75em;
   width: 100%;
@@ -70,7 +71,7 @@ body {
       }
     }
     .icon {
-      color: black;
+      color: $ShadowBlack;
       height: 1.25em;
       transform: translate(-5%, 15%);
       width: 1.25em;
@@ -83,6 +84,14 @@ body {
       overflow: hidden;
       transition: width 0.3s ease;
       width: 0;
+
+      &:focus {
+
+      }
+ 
+      &::placeholder {
+        color: $ShadowBlack;
+      }
     }
   }
 }
