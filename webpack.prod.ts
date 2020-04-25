@@ -48,7 +48,6 @@ const config: webpack.Configuration = {
       "process.env": JSON.stringify(dotenv.parsed)
     })
   ],
-  
 };
 
 export default config;
