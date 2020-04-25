@@ -18,6 +18,10 @@ const config: webpack.Configuration = {
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json"],
+    alias: {
+      Components: path.resolve(__dirname, "src/components"),
+      Assets: path.resolve(__dirname, "src/assets"),
+    },
   },
   module: {
     rules: [
@@ -46,7 +50,7 @@ const config: webpack.Configuration = {
     htmlPlugin,
     new webpack.DefinePlugin({
       "process.env": JSON.stringify(dotenv.parsed)
-    })
+    }),
   ],
 };
 

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import { GlobalContext } from "../App";
-import * as API from "../API";
 import $ from "jquery";
+import { GlobalContext } from "Components/App";
+import * as API from "Components/API";
 
 export const Header = () => {
   const globalContext = useContext(GlobalContext);

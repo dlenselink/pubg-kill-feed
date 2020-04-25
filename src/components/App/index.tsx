@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
-import { Loader } from "../Loader";
-import { Header } from "../Header";
+import { Loader } from "Components/Loader";
+import { Header } from "Components/Header";
 import "../../styles.scss";
 
 interface IGlobalContext {
