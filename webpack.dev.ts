@@ -1,3 +1,4 @@
+import * as path from "path";
 import * as webpack from "webpack";
 import * as HtmlWebPackPlugin from "html-webpack-plugin";
 
@@ -12,6 +13,10 @@ const config: webpack.Configuration = {
   entry: "./src/index.tsx",
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json"],
+    alias: {
+      Components: path.resolve(__dirname, "src/components"),
+      Assets: path.resolve(__dirname, "src/assets"),
+    },
   },
   module: {
     rules: [

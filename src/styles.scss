@@ -20,7 +20,7 @@ body {
   width: 100vw;
   
   &:before {
-    background: url("/public/background.png") no-repeat center center fixed;
+    background: url("/src/assets/background.png") no-repeat center center fixed;
     background-size: cover;
     bottom: 0px;
     content: "";
@@ -38,7 +38,9 @@ body {
 .header {
   align-items: center;
   animation: fadeIn .5s ease;
-  background-color: black;
+  background-color: white;
+  box-shadow: 3px 3px 3px $ShadowBlack;
+  color: $ShadowBlack;
   display: flex;
   flex-direction: column;
   height: 26px;
@@ -48,13 +50,12 @@ body {
   
   .searchbar {
     align-items: center;
-    background-color: white;
-    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0);
     padding: 7px 8px;
 
     &:hover {
       .input {
-        caret-color: black;
+        caret-color: $ShadowBlack;
         padding: 0 10px;
         transition: width 0.3s ease;
         width: 300px;
@@ -62,9 +63,9 @@ body {
     }
     .icon {
       color: black;
-      height: 1em;
+      height: 1.25em;
       transform: translate(-5%, 15%);
-      width: 1em;
+      width: 1.25em;
     }
     .input {
       background: none;
@@ -83,7 +84,6 @@ body {
   animation-duration: 2s;
   display: flex !important;
 }
-
 
 .loader {
   background-color: black;
@@ -122,7 +122,6 @@ body {
       @media(hover: hover) and (pointer: fine) {
         &:hover {
           .input {
-            caret-color: black;
             padding: 0 10px;
             transition: width 0.3s ease;
             width: 50vw;

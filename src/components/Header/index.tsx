@@ -5,11 +5,6 @@ import $ from "jquery";
 
 export const Header = () => {
   const globalContext = useContext(GlobalContext);
-
-  const isTouchDevice = () => {
-    const touchSupport = "onstart" in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
-    if (touchSupport) return true;
-  };
   
 	const handleKeyPress = async (event: any) => {
     const searchbarInput: JQuery<HTMLElement> = $("input[name='searchbarInput']");
@@ -20,7 +15,6 @@ export const Header = () => {
       const playerInfo = await API.getPlayerInfo(playerName);
       const seasonList = await API.getSeasonList();
       console.log(seasonList);
-      console.log("isTouchDevice: " + (isTouchDevice() === true));
     }
   };
 

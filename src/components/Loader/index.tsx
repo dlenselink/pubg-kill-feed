@@ -1,6 +1,6 @@
 import React, { useContext }  from "react";
 import * as classnames from "classnames";
-import { GlobalContext } from "../App";
+import { GlobalContext } from "Components/App";
 
 export const Loader = () => {
   const globalContext = useContext(GlobalContext);
@@ -8,7 +8,7 @@ export const Loader = () => {
 
   return (
     <div className={classNames} >
-      <img className="image" src={require("./loading.gif")} alt="Loading..." />
+      <img className="image" src={require("../../assets/loading.gif")} alt="Loading..." />
     </div>
   );
 };
