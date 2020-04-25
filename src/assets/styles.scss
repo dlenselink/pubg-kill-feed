@@ -63,7 +63,6 @@ body {
     &:hover {
       .input {
         caret-color: $ShadowBlack;
-        padding: 0 10px;
         transition: width 0.3s ease;
         width: 300px;
       }
@@ -124,26 +123,19 @@ body {
   .header {
     .searchbar {
       height: 32px;
-      transition: width 0.3s ease;
-    
-      @media (pointer: fine) {
-        @media(hover: hover) {
-          &:hover {
-            .input {
-              padding: 0 10px;
-              transition: width 0.3s ease;
-              width: 50vw;
-            }
-          }
-        }
-      }
-      .icon {
-        // height: 1em;
-        transform: translate(-5%, 15%);
-        // width: 1em;
-      }
       .input {
-        line-height: 1em;
+        width: 50vw;
+      }
+    }
+  }
+     
+  @media (pointer: fine) and (hover: hover) {
+    .header {
+      .searchbar:hover {
+        .input {
+          transition: width 0.3s ease;
+          width: 50vw;
+        }
       }
     }
   }

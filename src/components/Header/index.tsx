@@ -5,11 +5,20 @@ import * as API from "Components/API";
 
 export const Header = () => {
   const globalContext = useContext(GlobalContext);
+
+  const isTouchDevice = () => {
+    const touchSupport = "onstart" in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+    if (touchSupport) return true;
+  };
   
 	const handleKeyPress = async (event: any) => {
     const searchbarInput: JQuery<HTMLElement> = $("input[name='searchbarInput']");
     const header: JQuery<HTMLElement> = $(".header");
-		if (searchbarInput.val() && header.is(":hover") === true && event.key === "Enter") {
+    if (
+      searchbarInput.val() &&
+      (header.is(":hover") || searchbarInput.is(":focus")) &&
+      event.key === "Enter"
+    ) {
       globalContext.setIsLoading(true);
       const playerName = String(searchbarInput.val());
       const playerInfo = await API.getPlayerInfo(playerName);
