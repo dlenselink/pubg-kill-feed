@@ -60,11 +60,13 @@ body {
     background-color: rgba(0, 0, 0, 0);
     padding: 7px 8px;
 
-    &:hover {
-      .input {
-        caret-color: $ShadowBlack;
-        transition: width 0.3s ease;
-        width: 300px;
+    @media (pointer: fine) and (hover: hover) {
+      &:hover {
+        .input {
+          caret-color: $ShadowBlack;
+          transition: width 0.3s ease;
+          width: 300px;
+        }
       }
     }
     .icon {
@@ -76,7 +78,7 @@ body {
     .input {
       background: none;
       border: 0;
-      caret-color: transparent;
+      caret-color: $ShadowBlack;
       outline: 0;
       overflow: hidden;
       transition: width 0.3s ease;
