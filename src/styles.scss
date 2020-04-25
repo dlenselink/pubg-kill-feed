@@ -52,10 +52,18 @@ body {
     margin-top: auto;
     padding: 2px 10px;
 
+    &:hover {
+      .input {
+        caret-color: black;
+        padding: 0 10px;
+        transition: width 0.3s ease;
+        width: 300px;
+      }
+    }
     .icon {
       color: black;
       height: 1em;
-      transform: translate(-5%, 25%);
+      transform: translate(-2%, 25%);
       width: 1em;
     }
     .input {
@@ -70,27 +78,14 @@ body {
   }
 }
 
-.hidden {
-  display: none;
-}
-
 .is-loading {
   animation: fadeInFaster 1s ease;
   animation-duration: 2s;
   display: flex !important;
 }
 
-.loader-image {
-  width: 500px;
-  height: 375px;
-  position: fixed;
-  left: 50%;
-  top:  50%;
-  margin-left: -250px;
-  margin-top:  -250px;
-}
 
-.loader-image-wrapper {
+.loader {
   background-color: black;
   display: none;
   height: 100vh;
@@ -98,25 +93,27 @@ body {
   position: fixed;
   width: 100vw;
   z-index: -1;
-}
 
-
-
-.searchbar:hover {
-  .input {
-    caret-color: black;
-    padding: 0 10px;
-    transition: width 0.3s ease;
-    width: 300px;
+  .image {
+    width: 500px;
+    height: 375px;
+    position: fixed;
+    left: 50%;
+    top:  50%;
+    margin-left: -250px;
+    margin-top:  -250px;
   }
 }
 
 @media (max-width: $Mobile) {
-  .loader-image {
-    height: auto;
-    margin-left: -50%;
-    width: 100vw;
+  .loader {
+    .image {
+      height: auto;
+      margin-left: -50%;
+      width: 100vw;
+    }
   }
+
   .header {
     height: 21px;
 
@@ -124,14 +121,6 @@ body {
       height: 32px;
       padding: 8px;
 
-      .icon {
-        height: 1em;
-        transform: translate(-5%, 15%);
-        width: 1em;
-      }
-      .input {
-        line-height: 1em;
-      }
       &:hover {
         .input {
           caret-color: black;
@@ -139,6 +128,14 @@ body {
           transition: width 0.3s ease;
           width: 50vw;
         }
+      }
+      .icon {
+        height: 1em;
+        transform: translate(-5%, 15%);
+        width: 1em;
+      }
+      .input {
+        line-height: 1em;
       }
     }
   }
