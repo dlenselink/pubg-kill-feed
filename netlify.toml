@@ -12,5 +12,3 @@
 		no-cache,
 		no-store,
 		must-revalidate'''
-    Set-Cookie = "HttpOnly;Secure;SameSite=Strict"
-    
