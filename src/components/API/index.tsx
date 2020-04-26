@@ -1,13 +1,11 @@
 import { get } from "lodash";
 
-const key = process.env.PUBG_API_KEY;
-
 export const getMatchInfo = async (matchId: string) => {
-  if (key) {
+  if (process.env.PUBG_API_KEY) {
     const url = "https://api.pubg.com/shards/steam/matches/" + matchId;
     const headers = {
       "Accept": "application/vnd.api+json",
-      "Authorization": "Bearer " + key,
+      "Authorization": "Bearer " + process.env.PUBG_API_KEY,
     };
 
     return await fetch(url, {
@@ -22,16 +20,16 @@ export const getMatchInfo = async (matchId: string) => {
       throw new Error("Error in getMatchInfo fetch: " + error);
     });
   } else {
-    throw new Error("Error reading or retrieving API key env variable (getMatchInfo).");
+    console.error("Error reading or retrieving API key env variable (getMatchInfo).");
   }
 };
 
 export const getPlayerInfo = async (playerName: string) => {
-  if (key) {
+  if (process.env.PUBG_API_KEY) {
     const url = "https://api.pubg.com/shards/steam/players?filter[playerNames]=" + playerName;
     const headers = {
       "Accept": "application/vnd.api+json",
-      "Authorization": "Bearer " + key,
+      "Authorization": "Bearer " + process.env.PUBG_API_KEY,
     };
 
     return await fetch(url, {
@@ -61,17 +59,16 @@ export const getPlayerInfo = async (playerName: string) => {
       throw new Error("Error in getPlayerInfo fetch: " + error);
     });
   } else {
-    throw new Error("Error reading or retrieving API key env variable (getPlayerInfo).");
+    console.error("Error reading or retrieving API key env variable (getPlayerInfo).");
   }
-
 };
 
 export const getSeasonList = async () => {
-  if (key) {
+  if (process.env.PUBG_API_KEY) {
     const url = "https://api.pubg.com/shards/steam/seasons";
     const headers = {
       "Accept": "application/vnd.api+json",
-      "Authorization": "Bearer " + key,
+      "Authorization": "Bearer " + process.env.PUBG_API_KEY,
     };
 
     return await fetch(url, {
@@ -92,16 +89,16 @@ export const getSeasonList = async () => {
       throw new Error("Error in getSeasonList fetch: " + error);
     });
   } else {
-    throw new Error("Error reading or retrieving API key env variable (getSeasonList).");
+    console.error("Error reading or retrieving API key env variable (getSeasonList).");
   }
 };
 
 export const getSeasonStats = async (accountId: string, season: string) => {
-  if (key) {
+  if (process.env.PUBG_API_KEY) {
     const url = "https://api.pubg.com/shards/steam/players/" + accountId + "/seasons/" + season;
     const headers = {
       "Accept": "application/vnd.api+json",
-      "Authorization": "Bearer " + key,
+      "Authorization": "Bearer " + process.env.PUBG_API_KEY,
     };
 
     return await fetch(url, {
@@ -117,6 +114,6 @@ export const getSeasonStats = async (accountId: string, season: string) => {
       throw new Error("Error in getSeasonStats fetch: " + error);
     });
   } else {
-    throw new Error("Error reading or retrieving API key env variable (getSeasonStats).");
+   console.error("Error reading or retrieving API key env variable (getSeasonStats).");
   }
 };
