@@ -23,10 +23,6 @@ export const Header = () => {
     }
   };
 
-  const updatePlayer = () => {
-
-  };
-
   return(
     <div className="header">
       <div className="searchbar">
