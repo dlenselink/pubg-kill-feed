@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
-import { Loader } from "../Loader";
-import { Header } from "../Header";
-import "../../styles.scss";
+import { Loader } from "Components/Loader";
+import { Header } from "Components/Header";
+import "Assets/styles.scss";
 
 interface IGlobalContext {
   isLoading: boolean;
@@ -28,7 +28,10 @@ export const App = () => {
 	[isLoading]);
 
 	return(
-		<GlobalContext.Provider value={{ isLoading, setIsLoading }}>
+		<GlobalContext.Provider value={{
+			isLoading,
+			setIsLoading,
+		}}>
 			<div className="app">
 				<Loader />
 				<Header />

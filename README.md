@@ -12,9 +12,12 @@ To run the project follow these steps:
 
 ## Using the App
 
-Currently the only functionality is that the main player info is logged to the console upon a successful search. To use the search, hover over the magnifying glass icon, then enter a PUBG player name and hit the Enter key. After the loading animation is done, check either the console or LocalStorage for player information. The search can be used any number of times. Future functionality will include player season stats, lifetime stats, and a live feed of all combat encounters (kills, knockouts, deaths).
+Currently the only functionality is that the main player info is logged to the console upon a successful search. To use the search, hover over the magnifying glass icon, then enter a PUBG player name and hit the Enter key. After the loading animation is done, check the console for player information. The search can be used any number of times. Future functionality will include player season stats, lifetime stats, and a live feed of all combat encounters (kills, knockouts, deaths).
 
-The app is currently not compatible with touchscreen devices.
+The develpment branch auto-deploys to this Netlify instance:
+
+`https://sharp-agnesi-931425.netlify.app`
+
 
 ## Versions
 
@@ -22,6 +25,7 @@ The app is currently not compatible with touchscreen devices.
 - v0.0.2: Refactored build of the app featuring React Hooks and const-based components. This version added the loading screen, player info logging to console, and basic error handling.
 - v0.0.3: Optimized packages, added yarn prepare command, significantly updated README.
 - v0.0.4: Complete project overhaul: started from scratch without create-react-app, switched over to npm and restructured the app to use Hooks and the Context API for global state management.
+- v0.0.5: Improved project structure, enabled full mobile compatability, elminated console errors, optimized build process for Netlify, improved loading animation, changed color scheme, added a few loader packages to assist in deployment, removed manifest due to issues, delivered all static assets via CDN, optimized and tested page speed (100 on both Google and GTMetrix!). Most importantly, I configured the development branch to [autodeploy to a Netlify instance](https://sharp-agnesi-931425.netlify.app). 
 
 ## About
 

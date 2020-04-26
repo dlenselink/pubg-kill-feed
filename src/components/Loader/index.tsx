@@ -1,12 +1,15 @@
 import React, { useContext }  from "react";
-import { GlobalContext } from "../App";
+import * as classnames from "classnames";
+import { GlobalContext } from "Components/App";
 
 export const Loader = () => {
   const globalContext = useContext(GlobalContext);
+  const classNames = classnames({"loader": true}, {"is-loading": globalContext.isLoading});
+  const loadingAnimation = "https://res.cloudinary.com/pubg-kill-feed/image/upload/v1587862298/assets/loading.svg";
 
   return (
-    <div className={globalContext.isLoading ? "loader-image-wrapper is-loading" : "loader-image-wrapper"} >
-      <img className="loader-image" src={require("./loading.gif")} alt="Loading..." />
+    <div className={classNames} >
+      <img className="image" src={loadingAnimation} alt="Loading..." />
     </div>
   );
 };

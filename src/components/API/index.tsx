@@ -15,7 +15,9 @@ export const getMatchInfo = async (matchId: string) => {
   .then(data => {
     return data;
   })
-  .catch(error => console.error(error));
+  .catch(error => {
+    throw new Error("Error in getMatchInfo fetch: " + error);
+  });
 };
 
 export const getPlayerInfo = async (playerName: string) => {
@@ -31,7 +33,6 @@ export const getPlayerInfo = async (playerName: string) => {
   })
   .then(response => response.json())
   .then(json => {
-    console.log(json);
     const recentMatches: Array<{ type: string, id: string }> = get(json, "data[0].relationships.matches.data");
     const playerId = get(json, "data[0].id");
     let matchIds: Array<string> = [];
@@ -46,10 +47,12 @@ export const getPlayerInfo = async (playerName: string) => {
       };
       return playerInfo;
     } else {
-      console.error("No stats found for user '" + playerName + "'");
+      console.error("No player info found for user '" + playerName + "'");
     }
   })
-  .catch(error => console.error(error));
+  .catch(error => {
+    throw new Error("Error in getPlayerInfo fetch: " + error);
+  });
 };
 
 export const getSeasonList = async () => {
@@ -73,7 +76,9 @@ export const getSeasonList = async () => {
       console.error("Error while retrieving season list");
     }
   })
-  .catch(error => console.error(error));
+  .catch(error => {
+    throw new Error("Error in getSeasonList fetch: " + error);
+  });
 };
 
 export const getSeasonStats = async (accountId: string, season: string) => {
@@ -89,7 +94,10 @@ export const getSeasonStats = async (accountId: string, season: string) => {
   })
   .then(response => response.json())
   .then(json => {
-    console.log(json);
+    // Validate response
+    return json;
   })
-  .catch(error => console.error(error));
+  .catch(error => {
+    throw new Error("Error in getSeasonStats fetch: " + error);
+  });
 };

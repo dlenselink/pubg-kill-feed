@@ -1,0 +1,132 @@
+@import "./constants";
+@import "./animations";
+
+body {
+  font-family: "Roboto", "Helvetica Neue", sans-serif;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+
+  input[type="text"] {
+    font-size: inherit;
+  }
+}
+
+.app {
+  color: $ShadowBlack;
+  display: flex;
+  font-size: $DefaultFontSize;
+  height: 100vh;
+  justify-content: center;
+  position: relative;
+  width: 100vw;
+  
+  &:before {
+    background: url($BackgroundImage) no-repeat center center fixed;
+    background-size: cover;
+    bottom: 0px;
+    content: "";
+    left: 0px;
+    opacity: 0.5;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    z-index: -1;
+    -o-background-size: cover;
+    -webkit-background-size: cover;
+  }
+}
+
+.header {
+  align-items: center;
+  animation: fadeIn .5s ease;
+  background-color: white;
+  box-shadow: 2px 2px 4px $ShadowGrey;
+  display: flex;
+  flex-direction: column;
+  height: 22px;
+  justify-content: center;
+  padding: .75em;
+  width: 100%;
+  
+  .searchbar {
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0);
+    padding: 7px 8px;
+
+    @media (pointer: fine) and (hover: hover) {
+      &:hover {
+        .input {
+          caret-color: $ShadowBlack;
+          transition: width 0.3s ease;
+          width: 300px;
+        }
+      }
+    }
+    .icon {
+      color: $ShadowBlack;
+      height: 1.25em;
+      transform: translate(-5%, 15%);
+      width: 1.25em;
+    }
+    .input {
+      background: none;
+      border: 0;
+      caret-color: $ShadowBlack;
+      outline: 0;
+      overflow: hidden;
+      transition: width 0.3s ease;
+      width: 0;
+ 
+      &::placeholder {
+        color: $ShadowBlack;
+      }
+    }
+  }
+}
+
+.is-loading {
+  animation: fadeInFaster 1s ease;
+  animation-duration: 2s;
+  display: flex !important;
+}
+
+.loader {
+  background-color: white;
+  display: none;
+  height: 100vh;
+  opacity: 0;
+  position: fixed;
+  width: 100vw;
+
+  .image {
+    width: $LoaderWidthHeight;
+    height: $LoaderWidthHeight;
+    position: fixed;
+    left: 50%;
+    top:  50%;
+    margin-left: -($LoaderWidthHeight / 2);
+    margin-top: -($LoaderWidthHeight / 2);
+  }
+}
+
+@media (max-width: $MobileBreakpoint) {
+  .header {
+    .searchbar {
+      height: 32px;
+      .input {
+        width: 50vw;
+      }
+    }
+  }
+     
+  @media (pointer: fine) and (hover: hover) {
+    .header {
+      .searchbar:hover {
+        .input {
+          transition: width 0.3s ease;
+          width: 50vw;
+        }
+      }
+    }
+  }
+}
