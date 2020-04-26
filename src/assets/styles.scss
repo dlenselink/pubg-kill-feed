@@ -1,4 +1,5 @@
 @import "./constants";
+@import "./animations";
 
 body {
   font-family: "Roboto", "Helvetica Neue", sans-serif;
@@ -13,7 +14,7 @@ body {
 .app {
   color: $ShadowBlack;
   display: flex;
-  font-size: 16px;
+  font-size: $DefaultFontSize;
   height: 100vh;
   justify-content: center;
   position: relative;
@@ -30,8 +31,8 @@ body {
     right: 0px;
     top: 0px;
     z-index: -1;
-    -webkit-background-size: cover;
     -o-background-size: cover;
+    -webkit-background-size: cover;
   }
 }
 
@@ -40,7 +41,6 @@ body {
   animation: fadeIn .5s ease;
   background-color: white;
   box-shadow: 2px 2px 4px $ShadowGrey;
-  color: $ShadowBlack;
   display: flex;
   flex-direction: column;
   height: 22px;
@@ -97,20 +97,19 @@ body {
   opacity: 0;
   position: fixed;
   width: 100vw;
-  z-index: -1;
 
   .image {
-    width: 200px;
-    height: 200px;
+    width: $LoaderWidthHeight;
+    height: $LoaderWidthHeight;
     position: fixed;
     left: 50%;
     top:  50%;
-    margin-left: -100px;
-    margin-top:  -100px;
+    margin-left: -($LoaderWidthHeight / 2);
+    margin-top: -($LoaderWidthHeight / 2);
   }
 }
 
-@media (max-width: $Mobile) {
+@media (max-width: $MobileBreakpoint) {
   .header {
     .searchbar {
       height: 32px;
@@ -130,31 +129,4 @@ body {
       }
     }
   }
-}
-
-@keyframes fadeIn { 
-  0% {
-    opacity: 0;
-    z-index: 1;
-  } 
-  100% { 
-    opacity: 1;
-  } 
-}
-
-@keyframes fadeInFaster { 
-  0% {
-    opacity: 0;
-    z-index: 1;
-  }
-  25% {
-    opacity: 1;
-  }
-  75% {
-    opacity: 1;
-  }
-  100% { 
-    opacity: 0;
-    z-index: 1;
-  } 
 }
