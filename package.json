@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --open --config webpack.dev.ts",
-    "build": "webpack --mode production --config webpack.prod.ts"
+    "build": "node ./src/scripts/create-env.js && webpack --mode production --config webpack.prod.ts"
   },
   "repository": {
     "type": "git",
