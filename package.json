@@ -27,7 +27,8 @@
     "jquery": "^3.5.0",
     "lodash": "^4.17.15",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "source-map-loader": "^0.2.4"
   },
   "devDependencies": {
     "@types/html-webpack-plugin": "^3.2.2",

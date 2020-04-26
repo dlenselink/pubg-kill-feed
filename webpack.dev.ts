@@ -39,6 +39,11 @@ const config: webpack.Configuration = {
           "sass-loader",
         ],
       },
+      {
+        test: /\.js$/,
+        use: ["source-map-loader"],
+        enforce: "pre"
+      },
     ],
   },
   plugins: [
