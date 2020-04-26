@@ -1,12 +1,4 @@
-/* * * Breakpoints * * */
-$Mobile: 575px;
-
-/* * * * Colors * * * */
-$MintGreen: #00eaa8;
-$RoyalBlue: #0042ea;
-$ShadowBlack: #00000080;
-$ShadowGrey: #00000040;
-$TealBlue: #00b6ea;
+@import "./constants";
 
 body {
   font-family: "Roboto", "Helvetica Neue", sans-serif;
@@ -19,7 +11,7 @@ body {
 }
 
 .app {
-  color: black;
+  color: $ShadowBlack;
   display: flex;
   font-size: 16px;
   height: 100vh;
@@ -28,7 +20,7 @@ body {
   width: 100vw;
   
   &:before {
-    background: url("./background.png") no-repeat center center fixed;
+    background: url($BackgroundImage) no-repeat center center fixed;
     background-size: cover;
     bottom: 0px;
     content: "";
@@ -84,10 +76,6 @@ body {
       overflow: hidden;
       transition: width 0.3s ease;
       width: 0;
-
-      &:focus {
-
-      }
  
       &::placeholder {
         color: $ShadowBlack;
@@ -103,7 +91,7 @@ body {
 }
 
 .loader {
-  background-color: black;
+  background-color: white;
   display: none;
   height: 100vh;
   opacity: 0;
@@ -112,25 +100,17 @@ body {
   z-index: -1;
 
   .image {
-    width: 500px;
-    height: 375px;
+    width: 200px;
+    height: 200px;
     position: fixed;
     left: 50%;
     top:  50%;
-    margin-left: -250px;
-    margin-top:  -250px;
+    margin-left: -100px;
+    margin-top:  -100px;
   }
 }
 
 @media (max-width: $Mobile) {
-  .loader {
-    .image {
-      height: auto;
-      margin-left: -50%;
-      width: 100vw;
-    }
-  }
-
   .header {
     .searchbar {
       height: 32px;

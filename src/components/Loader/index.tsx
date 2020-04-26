@@ -8,7 +8,7 @@ export const Loader = () => {
 
   return (
     <div className={classNames} >
-      <img className="image" src={require("Assets/loading.gif")} alt="Loading..." />
+      <img className="image" src={require("Assets/loading.svg")} alt="Loading..." />
     </div>
   );
 };
