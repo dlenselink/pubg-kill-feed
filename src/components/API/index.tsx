@@ -1,9 +1,5 @@
 import { get } from "lodash";
 
-/*export interface PlayerInfo {
-
-};*/
-
 const key = process.env.PUBG_API_KEY;
 
 export const getMatchInfo = async (matchId: string) => {

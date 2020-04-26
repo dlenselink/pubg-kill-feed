@@ -20,6 +20,7 @@ export const Header = () => {
       const playerInfo = await API.getPlayerInfo(playerName);
       const seasonList = await API.getSeasonList();
       console.log(seasonList);
+      console.log(playerInfo);
     }
   };
 
