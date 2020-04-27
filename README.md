@@ -16,13 +16,7 @@ Currently the only functionality is that the main player info is logged to the c
 
 The develpment branch auto-deploys to this Netlify instance:
 
-`https://sharp-agnesi-931425.netlify.app`
-
-You can run eslint on the command line as follows:
-
-`eslint ./src/**.tsx`
-
-Do not run `npm run build` locally to test prod build config, this will overwrite your api key .env. Use `npm run compile` instead.
+`https://sharp-agnesi-931425.netlify.app` [![Netlify Status](https://api.netlify.com/api/v1/badges/71526725-f4aa-48e4-917e-037e52bab12a/deploy-status)](https://app.netlify.com/sites/sharp-agnesi-931425/deploys)
 
 ## Versions
 
@@ -34,5 +28,8 @@ Do not run `npm run build` locally to test prod build config, this will overwrit
 - v0.0.6: Rewrote entire app structure to leverage context + useReducer, added and configured eslint, fixed searchbar bug.
 
 ## About
+
+- You can run eslint on the command line as follows: `eslint ./src/**.tsx`
+- Do not run `npm run build` locally to test prod build config, this will overwrite your api key .env. Use `npm run compile` instead.
 
 Want to contribute? Clone/Fork this project and feel free to either use [your own PUBG API key](https://developer.pubg.com) or contact [dlenselink](https://github.com/dlenselink) for details on getting started!
