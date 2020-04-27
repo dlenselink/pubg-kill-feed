@@ -16,7 +16,8 @@ Currently the only functionality is that the main player info is logged to the c
 
 The develpment branch auto-deploys to this Netlify instance:
 
-`https://sharp-agnesi-931425.netlify.app` [![Netlify Status](https://api.netlify.com/api/v1/badges/71526725-f4aa-48e4-917e-037e52bab12a/deploy-status)](https://app.netlify.com/sites/sharp-agnesi-931425/deploys)
+`https://sharp-agnesi-931425.netlify.app`
+[![Netlify Status](https://api.netlify.com/api/v1/badges/71526725-f4aa-48e4-917e-037e52bab12a/deploy-status)](https://app.netlify.com/sites/sharp-agnesi-931425/deploys)
 
 ## Versions
 
