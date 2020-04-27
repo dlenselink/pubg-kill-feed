@@ -1,5 +1,6 @@
 import React from "react";
 import { useGlobalDispatch } from "Components/Context";
+// import * as API from "Components/API";
 import $ from "jquery";
 
 export const Header: React.FunctionComponent = () => {
@@ -16,10 +17,15 @@ export const Header: React.FunctionComponent = () => {
       searchbarInput.blur();
       dispatch({ type: "SHOW_LOADER" });
       
-      /*
-        TODO: Update player stats, save to localStorage, populate app with player stats.
-        const playerName = String(searchbarInput.val());
-      */
+    /*
+      TODO: Add 'await' to handleKeyPress, pdate player stats, save to localStorage, populate app with player stats. Move all of that to (a) separate method(s).
+      
+      const playerName = String(searchbarInput.val());
+      const playerInfo = await API.getPlayerInfo(playerName);
+      console.log(playerInfo);
+      const seasonInfo = await API.getSeasonList();
+      console.log(seasonInfo);
+    */
     }
   };
 
