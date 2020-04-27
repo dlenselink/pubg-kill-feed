@@ -42,7 +42,11 @@ const config: webpack.Configuration = {
       {
         test: /\.js$/,
         use: ["source-map-loader"],
-        enforce: "pre"
+        enforce: "pre",
+      },
+      {
+        test: /\.(tsx)$/,
+        use: ["eslint-loader"],
       },
     ],
   },
@@ -50,7 +54,7 @@ const config: webpack.Configuration = {
     htmlPlugin,
     new webpack.DefinePlugin({
       "process.env": JSON.stringify(dotenv.parsed)
-    })
+    }),
   ],
 };
 

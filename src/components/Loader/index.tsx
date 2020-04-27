@@ -1,10 +1,10 @@
-import React, { useContext }  from "react";
+import React from "react";
 import * as classnames from "classnames";
-import { GlobalContext } from "Components/App";
+import { useGlobalState } from "Components/Context";
 
 export const Loader = () => {
-  const globalContext = useContext(GlobalContext);
-  const classNames = classnames({"loader": true}, {"is-loading": globalContext.isLoading});
+  const globalState = useGlobalState();
+  const classNames = classnames({"loader": true}, {"is-loading": globalState.isLoading});
   const loadingAnimation = "https://res.cloudinary.com/pubg-kill-feed/image/upload/v1587862298/assets/loading.svg";
 
   return (

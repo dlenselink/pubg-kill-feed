@@ -47,7 +47,11 @@ const config: webpack.Configuration = {
       {
         test: /\.js$/,
         use: ["source-map-loader"],
-        enforce: "pre"
+        enforce: "pre",
+      },
+      {
+        test: /\.(tsx)$/,
+        use: ["eslint-loader"],
       },
     ],
   },
