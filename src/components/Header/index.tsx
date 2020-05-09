@@ -1,14 +1,16 @@
 import React from "react";
 import { useGlobalDispatch } from "Components/Context";
 import { Actions } from "Utils/constants";
+import { getCurrentSeason, getPlayerInfo, getSeasonStats } from "Components/API";
 import $ from "jquery";
 
 export const Header: React.FC = () => {
   const dispatch = useGlobalDispatch();
 
-  const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
+  const handleKeyPress = async (event: React.KeyboardEvent<HTMLDivElement>) => {
     const searchbarInput: JQuery<HTMLElement> = $("input[name='searchbarInput']");
     const header: JQuery<HTMLElement> = $(".header");
+
     if (
       searchbarInput.val() &&
       header.is(":hover") &&
@@ -16,17 +18,16 @@ export const Header: React.FC = () => {
     ) {
       searchbarInput.blur();
       dispatch({ type: Actions.showLoader });
-      
 
-    /*
-      TODO: Add 'await' to handleKeyPress, pdate player stats, save to localStorage, populate app with player stats. Move all of that to (a) separate method(s).
-      
+      const currentSeason = await getCurrentSeason();
       const playerName = String(searchbarInput.val());
-      const playerInfo = await API.getPlayerInfo(playerName);
-      console.log(playerInfo);
-      const seasonInfo = await API.getSeasonList();
-      console.log(seasonInfo);
-    */
+      const playerInfo = await getPlayerInfo(playerName);
+
+      if (playerInfo) {
+        const seasonStats = await getSeasonStats(playerInfo.playerId, currentSeason);
+        console.log(seasonStats);
+      }
+      
     }
   };
 

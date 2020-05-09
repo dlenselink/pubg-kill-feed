@@ -1,4 +1,4 @@
-import { get } from "lodash";
+import { findIndex, get } from "lodash";
 
 class APIError extends Error {
   constructor(message: string) {
@@ -16,7 +16,6 @@ const fetchParams = {
 };
 
 const handleError = (error: Error) => {
-  // TODO: Expand error handling to populate user-facing messaging via react-spring
   if (error instanceof APIError) {
     console.error(`${error.name}: ${error.message}\n\n${error.stack}`);
   } else {
@@ -47,22 +46,14 @@ export const getPlayerInfo = async (playerName: string) => {
     throw new APIError("API Error in getMatchInfo fetch");
   })
   .then(json => {
-    const recentMatches: Array<{ type: string, id: string }> = get(json, "data[0].relationships.matches.data");
+    const recentMatches: RecentMatches = get(json, "data[0].relationships.matches.data");
     const playerId = get(json, "data[0].id");
     
-    const playerInfo = {
+    const playerInfo: PlayerInfo = {
       playerName: playerName,
       playerId: playerId,
-      recentMatches: [] as string[],
+      recentMatches: recentMatches,
     };
-
-    if (recentMatches) {
-      let matchIds: Array<string> = [];
-      recentMatches.forEach((match, index) => {
-        matchIds[index] = match.id;
-      });
-      playerInfo.recentMatches = matchIds;
-    }
     
     return playerInfo;
   })
@@ -87,8 +78,14 @@ export const getSeasonList = async () => {
   return payload;
 };
 
-export const getSeasonStats = async (accountId: string, season: string) => {
-  const url = "https://api.pubg.com/shards/steam/players/" + accountId + "/seasons/" + season;
+export const getCurrentSeason = async () => {
+  const seasonList: SeasonList = await getSeasonList();
+  const currentSeason = findIndex(seasonList, (season) => season.attributes.isCurrentSeason);
+  return seasonList[currentSeason].id;
+};
+
+export const getSeasonStats = async (playerId: string, season: string) => {
+  const url = "https://api.pubg.com/shards/steam/players/" + playerId + "/seasons/" + season;
   const payload = await fetch(url, fetchParams)
   .then(response => {
     if (response.status === 200) { return response.json() }
