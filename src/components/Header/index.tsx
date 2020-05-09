@@ -1,7 +1,7 @@
 import React from "react";
 import { useGlobalDispatch } from "Components/Context";
 import { Actions } from "Utils/constants";
-import { getCurrentSeason, getPlayerInfo, getSeasonStats } from "Components/API";
+import { getCurrentSeason, getPlayerId, getSeasonStats } from "Components/API";
 import $ from "jquery";
 
 export const Header: React.FC = () => {
@@ -21,12 +21,9 @@ export const Header: React.FC = () => {
 
       const currentSeason = await getCurrentSeason();
       const playerName = String(searchbarInput.val());
-      const playerInfo = await getPlayerInfo(playerName);
-
-      if (playerInfo) {
-        const seasonStats = await getSeasonStats(playerInfo.playerId, currentSeason);
-        console.log(seasonStats);
-      }
+      const playerId = await getPlayerId(playerName);
+      const seasonStats = await getSeasonStats(playerId, currentSeason);
+      console.log(seasonStats);
       
     }
   };

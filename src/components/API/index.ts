@@ -37,7 +37,7 @@ export const getMatchInfo = async (matchId: string) => {
   return payload;
 }; 
 
-export const getPlayerInfo = async (playerName: string) => {
+export const getPlayerId = async (playerName: string) => {
   const url = "https://api.pubg.com/shards/steam/players?filter[playerNames]=" + playerName;
   const payload = await fetch(url, fetchParams)
   .then(response => {
@@ -46,16 +46,8 @@ export const getPlayerInfo = async (playerName: string) => {
     throw new APIError("API Error in getMatchInfo fetch");
   })
   .then(json => {
-    const recentMatches: RecentMatches = get(json, "data[0].relationships.matches.data");
     const playerId = get(json, "data[0].id");
-    
-    const playerInfo: PlayerInfo = {
-      playerName: playerName,
-      playerId: playerId,
-      recentMatches: recentMatches,
-    };
-    
-    return playerInfo;
+    return playerId;
   })
   .catch(error => handleError(error));
 
@@ -79,8 +71,8 @@ export const getSeasonList = async () => {
 };
 
 export const getCurrentSeason = async () => {
-  const seasonList: SeasonList = await getSeasonList();
-  const currentSeason = findIndex(seasonList, (season) => season.attributes.isCurrentSeason);
+  const seasonList = await getSeasonList();
+  const currentSeason = findIndex(seasonList, (season: SeasonList) => season.attributes.isCurrentSeason);
   return seasonList[currentSeason].id;
 };
 

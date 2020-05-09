@@ -13,6 +13,7 @@ const globalReducer = (state: State, action: Action) => {
       };
       return resetLoader;
     }
+
     case Actions.showLoader: {
       const showLoader: State = {
         ...state,
@@ -20,6 +21,20 @@ const globalReducer = (state: State, action: Action) => {
       };
       return showLoader;
     }
+
+    case Actions.updatePlayer: {
+      let updatePlayer: State = {...state};
+      const playerStats = action.payload;
+      if (playerStats) {
+        updatePlayer = {
+          ...state,
+          isLoading: true,
+          playerStats: playerStats
+        };
+      }
+      return updatePlayer;
+    }
+    
     default:
       throw new Error("Invalid action type (StateProvider)");
   }

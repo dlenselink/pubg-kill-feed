@@ -1,12 +1,13 @@
 export const Actions = {
-  updatePlayer: "UPDATE_PLAYER",
   resetLoader: "RESET_LOADER",
   showLoader: "SHOW_LOADER",
+  updatePlayer: "UPDATE_PLAYER",
 };
 
 export const initialState: State = {
   isLoading: false,
   playerName: "",
+  playerStats: {},
 };
 
 export const Seasons = {
@@ -36,7 +37,7 @@ export const Seasons = {
   "division.bro.official.pc-2018-05": "Survivor Season 5",
   "division.bro.official.pc-2018-06": "Survivor Season 6",
   "division.bro.official.pc-2018-07": "Survivor Season 7",
-  "division.bro.official.pc-2018-08": "Survivor Season 8",
+  "division.bro.official.pc-2018-0": "Survivor Season 8",
 };
 
 export const Timings = {
