@@ -3,7 +3,7 @@ import { get } from "lodash";
 class APIError extends Error {
   constructor(message: string) {
     super(message);
-    this.name = "ValidationError";
+    this.name = "APIError";
   }
 }
 

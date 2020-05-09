@@ -1,8 +1,9 @@
 import React from "react";
 import { useGlobalDispatch } from "Components/Context";
+import { Actions } from "Utils/constants";
 import $ from "jquery";
 
-export const Header: React.FunctionComponent = () => {
+export const Header: React.FC = () => {
   const dispatch = useGlobalDispatch();
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -14,7 +15,7 @@ export const Header: React.FunctionComponent = () => {
       event.key === "Enter"
     ) {
       searchbarInput.blur();
-      dispatch({ type: "SHOW_LOADER" });
+      dispatch({ type: Actions.showLoader });
       
 
     /*

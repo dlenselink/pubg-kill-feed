@@ -1,40 +1,19 @@
 import React, { createContext, useContext, useEffect, useReducer } from "react";
-import { actionTypes } from "Utils/types";
-
-interface Action {
-  type: string;
-  payload?: Array<string> | object | string;
-}
-
-type Dispatch = (action: Action) => void;
-
-type GlobalProviderProps = {
-  children: React.ReactNode
-};
-
-type State = {
-  isLoading: boolean,
-  playerName: string,
-};
-
-const initialState: State = {
-  isLoading: false,
-  playerName: "",
-};
+import { Actions, initialState, Timings } from "Utils/constants";
 
 const GlobalStateContext = createContext<State | undefined>(undefined)
 const GlobalDispatchContext = createContext<Dispatch | undefined>(undefined);
 
 const globalReducer = (state: State, action: Action) => {
   switch(action.type) {
-    case actionTypes.resetLoader: {
+    case Actions.resetLoader: {
       const resetLoader: State = {
         ...state,
         isLoading: false,
       };
       return resetLoader;
     }
-    case actionTypes.showLoader: {
+    case Actions.showLoader: {
       const showLoader: State = {
         ...state,
         isLoading: true,
@@ -46,16 +25,15 @@ const globalReducer = (state: State, action: Action) => {
   }
 };
 
-const GlobalStateProvider = ({ children, }: GlobalProviderProps) => {
+const GlobalStateProvider = ({ children }: GlobalProviderProps) => {
   const [state, dispatch] = useReducer(globalReducer, initialState);
 
   useEffect(() => {
     if (state.isLoading) {
-      dispatch({ type: actionTypes.showLoader });
-      const delay = 2000;
+      dispatch({ type: Actions.showLoader });
       setTimeout(() => {
-        dispatch({ type: actionTypes.resetLoader });
-      }, delay);
+        dispatch({ type: Actions.resetLoader });
+      }, Timings.loadingAnimation);
     }
   },
   [state.isLoading]);
@@ -71,17 +49,13 @@ const GlobalStateProvider = ({ children, }: GlobalProviderProps) => {
 
 const useGlobalState = () => {
   const state = useContext(GlobalStateContext);
-  if (state === undefined) {
-    throw new Error('useGlobalState must be used within a GlobalStateProvider');
-  }
+  if (state === undefined) { throw new Error('useGlobalState must be used within a GlobalStateProvider') }
   return state;
 };
 
 const useGlobalDispatch = () => {
   const dispatch = useContext(GlobalDispatchContext);
-  if (dispatch === undefined) {
-    throw new Error('useGlobalDispatch must be used within a GlobalStateProvider');
-  }
+  if (dispatch === undefined) { throw new Error('useGlobalDispatch must be used within a GlobalStateProvider') }
   return dispatch;
 };
 
