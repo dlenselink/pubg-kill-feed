@@ -1,6 +1,16 @@
 import React from "react";
 import * as classnames from "classnames";
-import { useGlobalState } from "Components/Context";
+import { useGlobalDispatch, useGlobalState } from "Components/Context";
+import { actionTypes } from "Utils/types";
+
+export const loadingAnimation = () => {
+  const dispatch = useGlobalDispatch();
+  dispatch({ type: actionTypes.showLoader });
+  const delay = 2000;
+  setTimeout(() => {
+    dispatch({ type: actionTypes.resetLoader });
+  }, delay);
+};
 
 export const Loader = () => {
   const globalState = useGlobalState();

@@ -1,19 +1,25 @@
 import React, { createContext, useContext, useEffect, useReducer } from "react";
+import { actionTypes } from "Utils/types";
 
-type Action = {
+interface Action {
   type: string;
   payload?: Array<string> | object | string;
-};
+}
 
 type Dispatch = (action: Action) => void;
-type GlobalProviderProps = {children: React.ReactNode};
+
+type GlobalProviderProps = {
+  children: React.ReactNode
+};
 
 type State = {
   isLoading: boolean,
+  playerName: string,
 };
 
 const initialState: State = {
   isLoading: false,
+  playerName: "",
 };
 
 const GlobalStateContext = createContext<State | undefined>(undefined)
@@ -21,22 +27,22 @@ const GlobalDispatchContext = createContext<Dispatch | undefined>(undefined);
 
 const globalReducer = (state: State, action: Action) => {
   switch(action.type) {
-  case "SHOW_LOADER": {
-    const showLoader: State = {
-      ...state,
-      isLoading: true,
-    };
-    return showLoader;
-  }
-  case "RESET_LOADER": {
-    const resetLoader: State = {
-      ...state,
-      isLoading: false,
-    };
-    return resetLoader;
-  }
-  default:
-    throw new Error("Invalid action type (StateProvider)");
+    case actionTypes.resetLoader: {
+      const resetLoader: State = {
+        ...state,
+        isLoading: false,
+      };
+      return resetLoader;
+    }
+    case actionTypes.showLoader: {
+      const showLoader: State = {
+        ...state,
+        isLoading: true,
+      };
+      return showLoader;
+    }
+    default:
+      throw new Error("Invalid action type (StateProvider)");
   }
 };
 
@@ -44,12 +50,11 @@ const GlobalStateProvider = ({ children, }: GlobalProviderProps) => {
   const [state, dispatch] = useReducer(globalReducer, initialState);
 
   useEffect(() => {
-    // Trigger loading animation
     if (state.isLoading) {
-      dispatch({ type: "SHOW_LOADER" });
+      dispatch({ type: actionTypes.showLoader });
       const delay = 2000;
       setTimeout(() => {
-        dispatch({ type: "RESET_LOADER" });
+        dispatch({ type: actionTypes.resetLoader });
       }, delay);
     }
   },
@@ -65,7 +70,7 @@ const GlobalStateProvider = ({ children, }: GlobalProviderProps) => {
 };
 
 const useGlobalState = () => {
-  const state = useContext(GlobalStateContext)
+  const state = useContext(GlobalStateContext);
   if (state === undefined) {
     throw new Error('useGlobalState must be used within a GlobalStateProvider');
   }
@@ -73,7 +78,7 @@ const useGlobalState = () => {
 };
 
 const useGlobalDispatch = () => {
-  const dispatch = useContext(GlobalDispatchContext)
+  const dispatch = useContext(GlobalDispatchContext);
   if (dispatch === undefined) {
     throw new Error('useGlobalDispatch must be used within a GlobalStateProvider');
   }

@@ -31,7 +31,7 @@ The develpment branch auto-deploys to this Netlify instance:
 
 ## About
 
-- You can run eslint on the command line as follows: `eslint ./src/**.tsx`
+- You can run eslint on the command line as follows: `npm run eslint`
 - Do not run `npm run build` locally to test prod build config, this will overwrite your api key .env. Use `npm run compile` instead.
 
 Want to contribute? Clone/Fork this project and feel free to either use [your own PUBG API key](https://developer.pubg.com) or contact [dlenselink](https://github.com/dlenselink) for details on getting started!

@@ -4,6 +4,8 @@ import * as HtmlWebPackPlugin from "html-webpack-plugin";
 
 const dotenv = require('dotenv').config({path: __dirname + '/.env'});
 
+const { CheckerPlugin } = require('awesome-typescript-loader');
+
 const htmlPlugin = new HtmlWebPackPlugin({
   template: "./src/index.html",
 });
@@ -15,7 +17,7 @@ const config: webpack.Configuration = {
     extensions: [".ts", ".tsx", ".js", ".json"],
     alias: {
       Components: path.resolve(__dirname, "src/components"),
-      Assets: path.resolve(__dirname, "src/assets"),
+      Utils: path.resolve(__dirname, "src/utils"),
     },
   },
   module: {
@@ -45,13 +47,14 @@ const config: webpack.Configuration = {
         enforce: "pre",
       },
       {
-        test: /\.(tsx)$/,
+        test: /\.(js|ts)x$/,
         use: ["eslint-loader"],
       },
     ],
   },
   plugins: [
     htmlPlugin,
+    new CheckerPlugin(),
     new webpack.DefinePlugin({
       "process.env": JSON.stringify(dotenv.parsed)
     }),
