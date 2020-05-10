@@ -1,22 +1,22 @@
-interface Action {
+export interface Action {
   type: string;
   payload?: PlayerStats;
 }
 
-interface Dispatch {
+export interface Dispatch {
   (action: Action): void;
 }
 
-interface GlobalProviderProps {
+export interface GlobalProviderProps {
   children: React.ReactNode;
 }
 
-interface Match {
+export interface Match {
   type: string;
   id: string;
 }
 
-interface ModeStats {
+export interface ModeStats {
   assists: number,
   boosts: number,
   dBNOs: number,
@@ -54,7 +54,16 @@ interface ModeStats {
   wins: number,
 }
 
-interface PlayerStats {
+export interface SeasonList {
+  attributes: {
+    isCurrentSeason: boolean,
+    isOffseason: boolean,
+  },
+  id: string,
+  type: string,
+}
+
+export interface SeasonStats {
   data: {
     attributes: {
       bestRankPoint: number,
@@ -91,9 +100,12 @@ interface PlayerStats {
   };
 }
 
-interface State {
-  isLoading: boolean;
-  playerName: string;
-  playerStats: PlayerStats;
+export interface PlayerStats {
+  [key: string]: SeasonStats,
 }
 
+export interface State {
+  isLoading: boolean;
+  playerName: string;
+  playerStats?: PlayerStats;
+}

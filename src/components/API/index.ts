@@ -1,3 +1,5 @@
+// eslint-disable-next-line no-unused-vars
+import { SeasonList } from "Utils/interfaces";
 import { findIndex, get } from "lodash";
 
 class APIError extends Error {
@@ -78,10 +80,11 @@ export const getCurrentSeason = async () => {
 
 export const getSeasonStats = async (playerId: string, season: string) => {
   const url = "https://api.pubg.com/shards/steam/players/" + playerId + "/seasons/" + season;
+  console.log(url);
   const payload = await fetch(url, fetchParams)
   .then(response => {
     if (response.status === 200) { return response.json() }
-    throw new APIError("API Error in getSeasonsList fetch");
+    throw new APIError("API Error in getSeasonsStats fetch");
   })
   .then(json => { return json })
   .catch(error => handleError(error));

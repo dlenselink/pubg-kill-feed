@@ -1,5 +1,7 @@
-import React, { createContext, useContext, useEffect, useReducer } from "react";
-import { Actions, initialState, Timings } from "Utils/constants";
+import React, { createContext, useContext, useEffect, useMemo, useReducer } from "react";
+import { Actions, initialState } from "Utils/constants";
+// eslint-disable-next-line no-unused-vars
+import { Action, Dispatch, GlobalProviderProps, PlayerStats, State } from "Utils/interfaces";
 
 const GlobalStateContext = createContext<State | undefined>(undefined)
 const GlobalDispatchContext = createContext<Dispatch | undefined>(undefined);
@@ -28,7 +30,6 @@ const globalReducer = (state: State, action: Action) => {
       if (playerStats) {
         updatePlayer = {
           ...state,
-          isLoading: true,
           playerStats: playerStats
         };
       }
@@ -46,12 +47,19 @@ const GlobalStateProvider = ({ children }: GlobalProviderProps) => {
   useEffect(() => {
     if (state.isLoading) {
       dispatch({ type: Actions.showLoader });
-      setTimeout(() => {
-        dispatch({ type: Actions.resetLoader });
-      }, Timings.loadingAnimation);
+    }
+    if (!state.isLoading) {
+      dispatch({ type: Actions.resetLoader });
     }
   },
   [state.isLoading]);
+
+  useMemo(() => {
+    console.log(state.playerStats);
+    const value = JSON.stringify(state.playerStats);
+    localStorage.setItem("PUBG_playerStats", value);
+  },
+  [state.playerStats]);
   
   return (
     <GlobalStateContext.Provider value={state}>

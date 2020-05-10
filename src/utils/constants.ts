@@ -1,3 +1,6 @@
+// eslint-disable-next-line no-unused-vars
+import { State } from "./interfaces";
+
 export const Actions = {
   resetLoader: "RESET_LOADER",
   showLoader: "SHOW_LOADER",
@@ -7,7 +10,6 @@ export const Actions = {
 export const initialState: State = {
   isLoading: false,
   playerName: "",
-  playerStats: {},
 };
 
 export const Seasons = {
@@ -38,8 +40,4 @@ export const Seasons = {
   "division.bro.official.pc-2018-06": "Survivor Season 6",
   "division.bro.official.pc-2018-07": "Survivor Season 7",
   "division.bro.official.pc-2018-0": "Survivor Season 8",
-};
-
-export const Timings = {
-  loadingAnimation: 2000,
 };

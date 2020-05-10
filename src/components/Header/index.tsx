@@ -1,7 +1,9 @@
 import React from "react";
+import { getPlayerId, getSeasonList, getSeasonStats } from "Components/API";
 import { useGlobalDispatch } from "Components/Context";
 import { Actions } from "Utils/constants";
-import { getCurrentSeason, getPlayerId, getSeasonStats } from "Components/API";
+// eslint-disable-next-line no-unused-vars
+import { PlayerStats, SeasonList, SeasonStats } from "Utils/interfaces";
 import $ from "jquery";
 
 export const Header: React.FC = () => {
@@ -19,12 +21,20 @@ export const Header: React.FC = () => {
       searchbarInput.blur();
       dispatch({ type: Actions.showLoader });
 
-      const currentSeason = await getCurrentSeason();
       const playerName = String(searchbarInput.val());
       const playerId = await getPlayerId(playerName);
-      const seasonStats = await getSeasonStats(playerId, currentSeason);
-      console.log(seasonStats);
-      
+      const seasonList = await getSeasonList();
+
+      let playerStats = {} as PlayerStats;
+      let stats = {} as SeasonStats;
+
+      seasonList.forEach(async (season: SeasonList) => {
+        stats = await getSeasonStats(playerId, season.id);
+        playerStats[season.id] = stats;
+      });
+
+      dispatch({ type: Actions.updatePlayer, payload: playerStats });
+      dispatch({ type: Actions.resetLoader });
     }
   };
 
