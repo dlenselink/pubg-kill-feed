@@ -46,7 +46,7 @@
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.2.0",
     "node-sass": "^5.0.0",
-    "sass-loader": "^8.0.2",
+    "sass-loader": "^10.0.5",
     "style-loader": "^1.2.0",
     "ts-node": "^8.9.1",
     "typescript": "^3.8.3",
