@@ -7,7 +7,7 @@ export interface SeasonElement {
   }
 }
 
-export interface SeasonStatsRaw {
+export interface RawStats {
   assists: number;
   boosts: number;
   dBNOs: number;
@@ -45,7 +45,7 @@ export interface SeasonStatsRaw {
   wins: number;
 }
 
-export interface SeasonStatsCalculated {
+export interface CalculatedStats {
   mode: string;
   kdr: string;
   kda: string;
@@ -59,13 +59,22 @@ export interface SeasonStatsCalculated {
   most_kills: string;
 }
 
-export interface SeasonStatsModes {
-  "duo": SeasonStatsRaw;
-  "duo-fpp": SeasonStatsRaw;
-  "solo": SeasonStatsRaw;
-  "solo-fpp": SeasonStatsRaw;
-  "squad": SeasonStatsRaw;
-  "squad-fpp": SeasonStatsRaw;
+export interface SeasonStatsRaw {
+  "duo": RawStats;
+  "duo-fpp": RawStats;
+  "solo": RawStats;
+  "solo-fpp": RawStats;
+  "squad": RawStats;
+  "squad-fpp": RawStats;
+}
+
+export interface SeasonStatsCalculated {
+  duo: CalculatedStats;
+  duo_fpp: CalculatedStats;
+  solo: CalculatedStats;
+  solo_fpp: CalculatedStats;
+  squad: CalculatedStats;
+  squad_fpp: CalculatedStats;
 }
 
 export interface PlayerInfo {

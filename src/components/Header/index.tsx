@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useGlobalDispatch, useGlobalState } from "Components/Context";
 import $ from "jquery";
 import { getPlayerInfo, getSeasonId, getSeasonStats, handleError } from "Components/API";
+import { SeasonStatsCalculated } from "Components/Utils";
 
 export const Header = () => {
   const dispatch = useGlobalDispatch();
@@ -29,8 +30,11 @@ export const Header = () => {
         globalState.recentMatches = player.recentMatches;
         return getSeasonStats(player.playerId, globalState.currentSeason);
       })
-      .then(stats => {
-        console.log(stats);
+      .then(seasonStats => {
+        for (const stats of seasonStats) {
+          globalState.playerStats[stats.mode as keyof SeasonStatsCalculated] = stats;
+        }
+        console.log(globalState.playerStats);
       })
       .catch((err: Error) => handleError(err));
     }

@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer } from "react";
-import { SeasonStatsCalculated } from "Components/Utils";
+import { CalculatedStats } from "Components/Utils";
 
 type Action = {
   type: string;
@@ -14,17 +14,17 @@ type State = {
   playerId: string,
   playerName: string,
   playerStats: {
-    duo: SeasonStatsCalculated,
-    duo_fpp: SeasonStatsCalculated,
-    solo: SeasonStatsCalculated,
-    solo_fpp: SeasonStatsCalculated,
-    squad: SeasonStatsCalculated,
-    squad_fpp: SeasonStatsCalculated,
+    duo: CalculatedStats,
+    duo_fpp: CalculatedStats,
+    solo: CalculatedStats,
+    solo_fpp: CalculatedStats,
+    squad: CalculatedStats,
+    squad_fpp: CalculatedStats,
   }
   recentMatches: Array<string>,
 };
 
-const defaultStats: SeasonStatsCalculated = {
+const defaultStats: CalculatedStats = {
   mode: "",
   kdr: "",
   kda: "",

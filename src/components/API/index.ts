@@ -1,5 +1,5 @@
 import { findIndex, get } from "lodash";
-import { PlayerInfo, SeasonElement, SeasonStatsCalculated, SeasonStatsModes } from "Components/Utils";
+import { PlayerInfo, SeasonElement, CalculatedStats, SeasonStatsRaw } from "Components/Utils";
 
 class APIError extends Error {
   constructor(message: string) {
@@ -135,8 +135,8 @@ export const getSeasonStats = (accountId: string, season: string) => {
       throw new APIError("API Error in getSeasonsStats fetch");
     })
     .then(json => {
-      let stats: Array<SeasonStatsCalculated> = [];
-      const allStats: SeasonStatsModes = json.data.attributes.gameModeStats;
+      let stats: Array<CalculatedStats> = [];
+      const allStats: SeasonStatsRaw = json.data.attributes.gameModeStats;
       const modes = [
         "duo",
         "duo-fpp",
