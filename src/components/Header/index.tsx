@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { useGlobalDispatch, useGlobalState } from "Components/Context";
-import $ from "jquery";
 import { getPlayerInfo, getSeasonId, getSeasonStats, handleError } from "Components/API";
-import { SeasonStatsCalculated } from "Components/Utils";
+import $ from "jquery";
 
 export const Header = () => {
   const dispatch = useGlobalDispatch();

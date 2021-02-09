@@ -1,28 +1,4 @@
 import React, { createContext, useContext, useReducer } from "react";
-import { CalculatedStats } from "Components/Utils";
-
-type Action = {
-  type: string;
-  payload?: Array<string>;
-};
-
-type Dispatch = (action: Action) => void;
-type GlobalProviderProps = { children: React.ReactNode };
-type State = {
-  currentSeason: string,
-  isLoading: boolean,
-  playerId: string,
-  playerName: string,
-  playerStats: {
-    duo: CalculatedStats,
-    duo_fpp: CalculatedStats,
-    solo: CalculatedStats,
-    solo_fpp: CalculatedStats,
-    squad: CalculatedStats,
-    squad_fpp: CalculatedStats,
-  }
-  recentMatches: Array<string>,
-};
 
 const defaultStats: CalculatedStats = {
   mode: "",

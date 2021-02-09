@@ -1,4 +1,29 @@
-export interface SeasonElement {
+/* * * Types * * */
+type Action = {
+  type: string;
+  payload?: Array<string>;
+};
+
+type Dispatch = (action: Action) => void;
+type GlobalProviderProps = { children: React.ReactNode };
+type State = {
+  currentSeason: string,
+  isLoading: boolean,
+  playerId: string,
+  playerName: string,
+  playerStats: {
+    duo: CalculatedStats,
+    duo_fpp: CalculatedStats,
+    solo: CalculatedStats,
+    solo_fpp: CalculatedStats,
+    squad: CalculatedStats,
+    squad_fpp: CalculatedStats,
+  }
+  recentMatches: Array<string>,
+};
+
+/* * * Interfaces * * */
+declare interface SeasonElement {
   type: string;
   id: string;
   attributes: {
@@ -7,7 +32,7 @@ export interface SeasonElement {
   }
 }
 
-export interface RawStats {
+declare interface RawStats {
   assists: number;
   boosts: number;
   dBNOs: number;
@@ -45,7 +70,7 @@ export interface RawStats {
   wins: number;
 }
 
-export interface CalculatedStats {
+declare interface CalculatedStats {
   mode: string;
   kdr: string;
   kda: string;
@@ -59,7 +84,7 @@ export interface CalculatedStats {
   most_kills: string;
 }
 
-export interface SeasonStatsRaw {
+declare interface SeasonStatsRaw {
   "duo": RawStats;
   "duo-fpp": RawStats;
   "solo": RawStats;
@@ -68,7 +93,7 @@ export interface SeasonStatsRaw {
   "squad-fpp": RawStats;
 }
 
-export interface SeasonStatsCalculated {
+declare interface SeasonStatsCalculated {
   duo: CalculatedStats;
   duo_fpp: CalculatedStats;
   solo: CalculatedStats;
@@ -77,7 +102,7 @@ export interface SeasonStatsCalculated {
   squad_fpp: CalculatedStats;
 }
 
-export interface PlayerInfo {
+declare interface PlayerInfo {
   playerId: string;
   playerName: string;
   recentMatches: Array<string>;

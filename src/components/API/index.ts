@@ -1,5 +1,4 @@
 import { findIndex, get } from "lodash";
-import { PlayerInfo, SeasonElement, CalculatedStats, SeasonStatsRaw } from "Components/Utils";
 
 class APIError extends Error {
   constructor(message: string) {
