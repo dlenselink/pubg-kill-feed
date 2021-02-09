@@ -15,6 +15,7 @@
 		"paths": {
       "Assets/*": ["assets/*"],
       "Components/*": ["components/*"],
+			"Services/*": ["services/*"],
 			"*": ["components/Utils/*.d.ts"]
     }
 	},

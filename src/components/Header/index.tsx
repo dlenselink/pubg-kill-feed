@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useGlobalDispatch, useGlobalState } from "Components/Context";
-import { getPlayerInfo, getSeasonId, getSeasonStats, handleError } from "Components/API";
+//import { getPlayerInfo, getSeasonId, getSeasonStats, handleError } from "Services/PUBG/index";
+import { getPlayerInfo, getSeasonId, getSeasonStats, handleError } from "../../services/PUBG";
 import $ from "jquery";
 
 export const Header = () => {
