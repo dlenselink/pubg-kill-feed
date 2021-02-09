@@ -1,7 +1,5 @@
 import { findIndex, get } from "lodash";
-import { PlayerInfo, SeasonElement } from "Components/Utils";
-import { useGlobalState } from "Components/Context";
-import { ResolvePlugin } from "webpack";
+import { PlayerInfo, SeasonElement, SeasonStatsCalculated, SeasonStatsModes } from "Components/Utils";
 
 class APIError extends Error {
   constructor(message: string) {
@@ -112,34 +110,63 @@ export const getSeasonList = () => {
 
 export const getSeasonId = () => {
   const result = getSeasonList()
-    .then(seasons => {
-      const currentIndex = findIndex(seasons.data, (el: SeasonElement) => el.attributes.isCurrentSeason);
-      return seasons.data[currentIndex].id;
+    .then(res => {
+      const currentIndex = findIndex(res.data, (el: SeasonElement) => el.attributes.isCurrentSeason);
+      return res.data[currentIndex].id;
     })
     .catch(err => handleError(err));
 
   return result;
 };
 
-/*
-export const getSeasonStats = async (accountId: string, season: string) => {
+export const getSeasonStats = (accountId: string, season: string) => {
   const url = "https://api.pubg.com/shards/steam/players/" + accountId + "/seasons/" + season;
   const headers = {
     "Accept": "application/vnd.api+json",
     "Authorization": "Bearer " + token,
   };
 
-  const payload = await fetch(url, {
-    method: "GET",
-    headers: headers,
-  })
-  .then(res => {
-    if (res.status === 200) { return res.json() }
-    throw new APIError("API Error in getSeasonsList fetch");
-  })
-  .then(json => { return json })
-  .catch(error => handleError(error));
+  const result = fetch(url, { method: "GET", headers: headers })
+    .then(res => {
+      if (res.status === 200) {
+        return res.json();
+      }
+
+      throw new APIError("API Error in getSeasonsStats fetch");
+    })
+    .then(json => {
+      let stats: Array<SeasonStatsCalculated> = [];
+      const allStats: SeasonStatsModes = json.data.attributes.gameModeStats;
+      const modes = [
+        "duo",
+        "duo-fpp",
+        "solo",
+        "solo-fpp",
+        "squad",
+        "squad-fpp",
+      ] as const;
+
+      for (const mode of modes) {
+        if (allStats[mode].roundsPlayed) {
+          const s = allStats[mode];
+          stats.push({
+            mode: mode,
+            kdr: (s.kills / s.losses).toFixed(2),
+            kda: ((s.kills + s.assists) / s.losses).toFixed(2),
+            adr: (s.damageDealt / s.roundsPlayed).toFixed(2),
+            win_percentage: ((s.wins / s.roundsPlayed) * 100).toFixed(1), // %
+            top10_percentage: ((s.top10s / s.roundsPlayed) * 100).toFixed(1), // %
+            longest_kill: s.longestKill.toFixed(2), // meters
+            headshot_percentage: ((s.headshotKills / s.kills) * 100).toFixed(1), // %
+            average_weapons: (s.weaponsAcquired / s.roundsPlayed).toFixed(1),
+            average_time: Math.round((s.timeSurvived / s.roundsPlayed) / 60).toString(), // minutes
+            most_kills: s.roundMostKills.toString(),
+          });
+        }
+      }
+
+      return stats;
+    });
   
-  return payload;
+  return result;
 };
-*/
