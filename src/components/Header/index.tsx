@@ -1,25 +1,35 @@
-import React from "react";
-import { useGlobalDispatch } from "Components/Context";
+import React, { useEffect } from "react";
+import { useGlobalDispatch, useGlobalState } from "Components/Context";
 import $ from "jquery";
+import { getPlayerInfo, getSeasonId, handleError } from "Components/API";
 
 export const Header: React.FunctionComponent = () => {
   const dispatch = useGlobalDispatch();
+  const globalState = useGlobalState();
+
+  useEffect(() => {
+    getSeasonId()
+    .then((season: string) => {
+      globalState.currentSeason = season;
+    })
+    .catch((err: Error) => handleError(err));
+  }, []);
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
     const searchbarInput: JQuery<HTMLElement> = $("input[name='searchbarInput']");
     const header: JQuery<HTMLElement> = $(".header");
-    if (
-      searchbarInput.val() &&
-      header.is(":hover") &&
-      event.key === "Enter"
-    ) {
+    const input = String(searchbarInput.val());
+    if (input && header.is(":hover") && event.key === "Enter") {
       searchbarInput.blur();
       dispatch({ type: "SHOW_LOADER" });
-      
-      /*
-        TODO: Update player stats, save to localStorage, populate app with player stats.
-        const playerName = String(searchbarInput.val());
-      */
+      getPlayerInfo(input)
+      .then(player => {
+        globalState.playerId = player.playerId;
+        globalState.playerName = player.playerName;
+        globalState.recentMatches = player.recentMatches;
+        console.log(globalState);
+      })
+      .catch((err: Error) => handleError(err));
     }
   };
 

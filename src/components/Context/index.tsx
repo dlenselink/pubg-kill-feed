@@ -1,20 +1,27 @@
-import React, { createContext, useContext, useEffect, useReducer } from "react";
+import React, { createContext, useContext, useReducer } from "react";
 
 type Action = {
   type: string;
-  payload?: Array<string> | object | string;
+  payload?: Array<string>;
 };
 
 type Dispatch = (action: Action) => void;
-type GlobalProviderProps = {children: React.ReactNode};
-
+type GlobalProviderProps = { children: React.ReactNode };
 type State = {
+  currentSeason: string,
   isLoading: boolean,
+  playerId: string,
+  playerName: string,
+  recentMatches: Array<string>,
 };
 
-const initialState: State = {
+const initialState = {
+  currentSeason: "",
   isLoading: false,
-};
+  playerId: "",
+  playerName: "",
+  recentMatches: [],
+}
 
 const GlobalStateContext = createContext<State | undefined>(undefined)
 const GlobalDispatchContext = createContext<Dispatch | undefined>(undefined);
@@ -40,20 +47,8 @@ const globalReducer = (state: State, action: Action) => {
   }
 };
 
-const GlobalStateProvider = ({ children, }: GlobalProviderProps) => {
+const GlobalStateProvider = ({ children }: GlobalProviderProps) => {
   const [state, dispatch] = useReducer(globalReducer, initialState);
-
-  useEffect(() => {
-    // Trigger loading animation
-    if (state.isLoading) {
-      dispatch({ type: "SHOW_LOADER" });
-      const delay = 2000;
-      setTimeout(() => {
-        dispatch({ type: "RESET_LOADER" });
-      }, delay);
-    }
-  },
-  [state.isLoading]);
   
   return (
     <GlobalStateContext.Provider value={state}>
