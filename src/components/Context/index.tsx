@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useReducer } from "react";
+import { SeasonStatsCalculated } from "Components/Utils";
 
 type Action = {
   type: string;
@@ -12,7 +13,29 @@ type State = {
   isLoading: boolean,
   playerId: string,
   playerName: string,
+  playerStats: {
+    duo: SeasonStatsCalculated,
+    duo_fpp: SeasonStatsCalculated,
+    solo: SeasonStatsCalculated,
+    solo_fpp: SeasonStatsCalculated,
+    squad: SeasonStatsCalculated,
+    squad_fpp: SeasonStatsCalculated,
+  }
   recentMatches: Array<string>,
+};
+
+const defaultStats: SeasonStatsCalculated = {
+  mode: "",
+  kdr: "",
+  kda: "",
+  adr: "",
+  win_percentage: "",
+  top10_percentage: "",
+  longest_kill: "",
+  headshot_percentage: "",
+  average_weapons: "",
+  average_time: "",
+  most_kills: "",
 };
 
 const initialState = {
@@ -20,6 +43,14 @@ const initialState = {
   isLoading: false,
   playerId: "",
   playerName: "",
+  playerStats: {
+    duo: defaultStats,
+    duo_fpp: defaultStats,
+    solo: defaultStats,
+    solo_fpp: defaultStats,
+    squad: defaultStats,
+    squad_fpp: defaultStats,
+  },
   recentMatches: [],
 }
 

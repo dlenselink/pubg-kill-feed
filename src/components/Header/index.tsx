@@ -27,7 +27,6 @@ export const Header = () => {
         globalState.playerId = player.playerId;
         globalState.playerName = player.playerName;
         globalState.recentMatches = player.recentMatches;
-        //console.log(globalState);
         return getSeasonStats(player.playerId, globalState.currentSeason);
       })
       .then(stats => {

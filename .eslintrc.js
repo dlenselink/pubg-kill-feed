@@ -65,6 +65,10 @@ module.exports = {
         "no-sequences": 2,
         "no-throw-literal": 2,
         "no-template-curly-in-string": 2,
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": [
+            "error"
+        ],
         "no-use-before-define": 2,
         "no-useless-catch": 2,
         "no-useless-concat": 2,
