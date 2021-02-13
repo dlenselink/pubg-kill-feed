@@ -48,7 +48,6 @@ module.exports = {
         "no-invalid-this": 2,
         "no-lone-blocks": 2,
         "no-loop-func": 2,
-        "no-magic-numbers": 2,
         "no-multi-spaces": 2,
         "no-multi-str": 2,
         "no-new": 2,
@@ -66,6 +65,10 @@ module.exports = {
         "no-sequences": 2,
         "no-throw-literal": 2,
         "no-template-curly-in-string": 2,
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": [
+            "error"
+        ],
         "no-use-before-define": 2,
         "no-useless-catch": 2,
         "no-useless-concat": 2,

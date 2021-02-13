@@ -1,25 +1,45 @@
 import React from "react";
-import { useGlobalDispatch } from "Components/Context";
+import { defaultState, useGlobalDispatch } from "Components/Context";
+import { getPlayerInfo, getSeasonId, getSeasonStats, handleError } from "../../services/PUBG";
 import $ from "jquery";
 
-export const Header: React.FunctionComponent = () => {
+export const Header = () => {
   const dispatch = useGlobalDispatch();
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
     const searchbarInput: JQuery<HTMLElement> = $("input[name='searchbarInput']");
     const header: JQuery<HTMLElement> = $(".header");
-    if (
-      searchbarInput.val() &&
-      header.is(":hover") &&
-      event.key === "Enter"
-    ) {
+    const input = String(searchbarInput.val());
+    const updatedState: State = {
+      currentSeason: "",
+      isLoading: false,
+      playerId: "",
+      playerName: "",
+      playerStats: defaultState.playerStats,
+      recentMatches: [],
+    };
+
+    if (input && header.is(":hover") && event.key === "Enter") {
       searchbarInput.blur();
-      dispatch({ type: "SHOW_LOADER" });
-      
-      /*
-        TODO: Update player stats, save to localStorage, populate app with player stats.
-        const playerName = String(searchbarInput.val());
-      */
+      getSeasonId()
+      .then((season: string) => {
+        updatedState.currentSeason = season;
+        return getPlayerInfo(input);
+      })
+      .then(player => {
+        updatedState.playerId = player.playerId;
+        updatedState.playerName = player.playerName;
+        updatedState.recentMatches = player.recentMatches;
+        return getSeasonStats(player.playerId, updatedState.currentSeason);
+      })
+      .then(seasonStats => {
+        for (const stats of seasonStats) {
+          updatedState.playerStats[stats.mode as keyof SeasonStatsCalculated] = stats;
+        }
+
+        dispatch({ type: "UPDATE_STATE", payload: updatedState });
+      })
+      .catch((err: Error) => handleError(err));
     }
   };
 

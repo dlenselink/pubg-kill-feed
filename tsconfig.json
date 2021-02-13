@@ -14,7 +14,9 @@
     "baseUrl": "src",
 		"paths": {
       "Assets/*": ["assets/*"],
-      "Components/*": ["components/*"]
+      "Components/*": ["components/*"],
+			"Services/*": ["services/*"],
+			"*": ["components/Utils/*.d.ts"]
     }
 	},
 	"exclude": [

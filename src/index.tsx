@@ -3,7 +3,7 @@ import * as ReactDOM from "react-dom";
 import { GlobalStateProvider } from "Components/Context";
 import { App } from "Components/App";
 
-const Index: React.FunctionComponent = () => {
+const Index = () => {
   return (
     <GlobalStateProvider>
       <App />
