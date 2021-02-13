@@ -35,19 +35,13 @@ const GlobalDispatchContext = createContext<Dispatch | undefined>(undefined);
 
 const globalReducer = (state: State, action: Action) => {
   switch(action.type) {
-  case "TOGGLE_LOADER": {
-    return {
-      ...state,
-      isLoading: !state.isLoading,
-    };
-  }
-  case "UPDATE_STATE": {
-    return {
-      ...state,
-    };
-  }
-  default:
-    throw new Error("Invalid action type (StateProvider)");
+    case "UPDATE_STATE": {
+      return {
+        ...state,
+      };
+    }
+    default:
+      throw new Error("Invalid action type (StateProvider)");
   }
 };
 
@@ -79,4 +73,4 @@ const useGlobalDispatch = () => {
   return dispatch;
 };
 
-export { defaultState, defaultStats, useGlobalState, useGlobalDispatch, GlobalStateProvider };
+export { defaultState, useGlobalState, useGlobalDispatch, GlobalStateProvider };

@@ -1,12 +1,13 @@
 {
   "name": "pubg-kill-feed",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --open --config webpack.dev.ts",
     "build": "node ./scripts/create-netlify-env.js && webpack --mode production --config webpack.prod.ts",
-    "compile": "webpack --mode production --config webpack.prod.ts"
+    "compile": "webpack --mode production --config webpack.prod.ts",
+    "test": "eslint ./src/**.tsx"
   },
   "repository": {
     "type": "git",

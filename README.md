@@ -12,17 +12,11 @@ To run the project follow these steps:
 
 ## Using the App
 
-Currently the only functionality is that the main player info is logged to the console upon a successful search. To use the search, hover over the magnifying glass icon, then enter a PUBG player name and hit the Enter key. After the loading animation is done, check the console for player information. The search can be used any number of times. Future functionality will include player season stats, lifetime stats, and a live feed of all combat encounters (kills, knockouts, deaths).
+To use the search functionality, hover over the magnifying glass icon and enter a PUBG player name. Then, hit the Enter key. Future functionality will include player season stats, lifetime stats, and a live feed of all combat encounters (kills, knockouts, deaths).
 
-The develpment branch auto-deploys to this Netlify instance:
+You can run eslint on the command line as follows: `npm test`.
 
-`https://sharp-agnesi-931425.netlify.app`
-
-You can run eslint on the command line as follows:
-
-`eslint ./src/**.tsx`
-
-Do not run `npm run build` locally to test prod build config, this will overwrite your api key .env. Use `npm run compile` instead.
+Do not run `npm run build` locally when testing build configs, this will overwrite your api key .env. Use `npm run compile` instead.
 
 ## Versions
 
@@ -32,6 +26,7 @@ Do not run `npm run build` locally to test prod build config, this will overwrit
 - v0.0.4: Complete project overhaul: started from scratch without create-react-app, switched over to npm and restructured the app to use Hooks and the Context API for global state management.
 - v0.0.5: Improved project structure, enabled full mobile compatability, elminated console errors, optimized build process for Netlify, improved loading animation, changed color scheme, added a few loader packages to assist in deployment, removed manifest due to issues, delivered all static assets via CDN, optimized and tested page speed (100 on both Google and GTMetrix!). Most importantly, I configured the development branch to [autodeploy to a Netlify instance](https://sharp-agnesi-931425.netlify.app).
 - v0.0.6: Rewrote entire app structure to leverage context + useReducer, added and configured eslint, fixed searchbar bug.
+- .0.0.7: Improved reducer logic and added season stats table.
 
 ## About
 

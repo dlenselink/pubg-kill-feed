@@ -21,33 +21,6 @@ export const handleError = (error: Error) => {
   }
 };
 
-/*
-export const getMatchInfo = async (matchId: string) => {
-  const url = "https://api.pubg.com/shards/steam/matches/" + matchId;
-  const headers = {
-    "Accept": "application/vnd.api+json",
-    "Authorization": "Bearer " + token,
-  };
-
-  const payload = await fetch(url, {
-    method: "GET",
-    headers: headers,
-  })
-  .then(res => {
-    if (res.status === 200) { return res.json() }
-    if (res.status === 404) {
-      console.error(`No match info found for match ${matchId}`);
-    } else {
-      throw new APIError("API Error in getMatchInfo fetch");
-    }
-  })
-  .then(json => { return json })
-  .catch(error => handleError(error));
-
-  return payload;
-};
-*/
-
 export const getPlayerInfo = (playerName: string) => {
   const url = "https://api.pubg.com/shards/steam/players?filter[playerNames]=" + playerName;
   const headers = {
