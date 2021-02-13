@@ -55,6 +55,11 @@ const config: webpack.Configuration = {
       },
     ],
   },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
+  },
   plugins: [
     htmlPlugin,
     new webpack.DefinePlugin({
