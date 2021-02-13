@@ -1,40 +1,43 @@
-import React, { useEffect } from "react";
-import { useGlobalDispatch, useGlobalState } from "Components/Context";
-//import { getPlayerInfo, getSeasonId, getSeasonStats, handleError } from "Services/PUBG/index";
+import React from "react";
+import { defaultState, useGlobalDispatch } from "Components/Context";
 import { getPlayerInfo, getSeasonId, getSeasonStats, handleError } from "../../services/PUBG";
 import $ from "jquery";
 
 export const Header = () => {
   const dispatch = useGlobalDispatch();
-  const globalState = useGlobalState();
-
-  useEffect(() => {
-    getSeasonId()
-    .then((season: string) => {
-      globalState.currentSeason = season;
-    })
-    .catch((err: Error) => handleError(err));
-  }, []);
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
     const searchbarInput: JQuery<HTMLElement> = $("input[name='searchbarInput']");
     const header: JQuery<HTMLElement> = $(".header");
     const input = String(searchbarInput.val());
+    const updatedState: State = {
+      currentSeason: "",
+      isLoading: false,
+      playerId: "",
+      playerName: "",
+      playerStats: defaultState.playerStats,
+      recentMatches: [],
+    };
+
     if (input && header.is(":hover") && event.key === "Enter") {
       searchbarInput.blur();
-      dispatch({ type: "SHOW_LOADER" });
-      getPlayerInfo(input)
+      getSeasonId()
+      .then((season: string) => {
+        updatedState.currentSeason = season;
+        return getPlayerInfo(input);
+      })
       .then(player => {
-        globalState.playerId = player.playerId;
-        globalState.playerName = player.playerName;
-        globalState.recentMatches = player.recentMatches;
-        return getSeasonStats(player.playerId, globalState.currentSeason);
+        updatedState.playerId = player.playerId;
+        updatedState.playerName = player.playerName;
+        updatedState.recentMatches = player.recentMatches;
+        return getSeasonStats(player.playerId, updatedState.currentSeason);
       })
       .then(seasonStats => {
         for (const stats of seasonStats) {
-          globalState.playerStats[stats.mode as keyof SeasonStatsCalculated] = stats;
+          updatedState.playerStats[stats.mode as keyof SeasonStatsCalculated] = stats;
         }
-        console.log(globalState.playerStats);
+
+        dispatch({ type: "UPDATE_STATE", payload: updatedState });
       })
       .catch((err: Error) => handleError(err));
     }

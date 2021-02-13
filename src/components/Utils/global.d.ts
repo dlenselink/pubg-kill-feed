@@ -1,7 +1,7 @@
 /* * * Types * * */
 type Action = {
   type: string;
-  payload?: Array<string>;
+  payload?: State;
 };
 
 type Dispatch = (action: Action) => void;
@@ -9,17 +9,10 @@ type GlobalProviderProps = { children: React.ReactNode };
 type State = {
   currentSeason: string,
   isLoading: boolean,
-  playerId: string,
-  playerName: string,
-  playerStats: {
-    duo: CalculatedStats,
-    duo_fpp: CalculatedStats,
-    solo: CalculatedStats,
-    solo_fpp: CalculatedStats,
-    squad: CalculatedStats,
-    squad_fpp: CalculatedStats,
-  }
-  recentMatches: Array<string>,
+  playerId?: string,
+  playerName?: string,
+  playerStats: SeasonStatsCalculated,
+  recentMatches?: Array<string>,
 };
 
 /* * * Interfaces * * */
@@ -72,16 +65,16 @@ declare interface RawStats {
 
 declare interface CalculatedStats {
   mode: string;
-  kdr: string;
-  kda: string;
-  adr: string;
-  win_percentage: string;
-  top10_percentage: string;
-  longest_kill: string;
-  headshot_percentage: string;
-  average_weapons: string;
-  average_time: string;
-  most_kills: string;
+  kdr: number;
+  kda: number;
+  adr: number;
+  win_percentage: number;
+  top10_percentage: number;
+  longest_kill: number;
+  headshot_percentage: number;
+  average_weapons: number;
+  average_time: number;
+  most_kills: number;
 }
 
 declare interface SeasonStatsRaw {

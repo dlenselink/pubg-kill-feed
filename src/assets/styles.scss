@@ -15,6 +15,7 @@ body {
   color: $ShadowBlack;
   display: flex;
   font-size: $DefaultFontSize;
+  flex-direction: column;
   height: 100vh;
   justify-content: center;
   position: relative;
@@ -46,8 +47,10 @@ body {
   height: 22px;
   justify-content: center;
   padding: .75em;
-  width: 100%;
-  
+  position: absolute;
+  top: 0;
+  width: -moz-available;
+
   .searchbar {
     align-items: center;
     background-color: rgba(0, 0, 0, 0);

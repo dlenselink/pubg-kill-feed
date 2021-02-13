@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/dlenselink/pubg-kill-feed#readme",
   "dependencies": {
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
     "@types/classnames": "^2.2.10",
     "@types/jquery": "^3.3.35",
     "@types/lodash": "^4.14.150",

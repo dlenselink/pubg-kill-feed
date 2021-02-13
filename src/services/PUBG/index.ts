@@ -9,11 +9,15 @@ class APIError extends Error {
 
 const token = process.env.PUBG_API_KEY;
 
+const roundToTwo = (initial: number) => {
+  return Math.round((initial + Number.EPSILON) * 100) / 100;
+};
+
 export const handleError = (error: Error) => {
   if (error instanceof APIError) {
     console.error(`${error.name}: ${error.message}\n\n${error.stack}`);
   } else {
-    console.error(`Unknown error occurred in getMatchInfo fetch. ${error}`);
+    console.error(`Unknown error occurred: ${error}`);
   }
 };
 
@@ -150,16 +154,16 @@ export const getSeasonStats = (accountId: string, season: string) => {
           const s = allStats[mode];
           stats.push({
             mode: mode,
-            kdr: (s.kills / s.losses).toFixed(2),
-            kda: ((s.kills + s.assists) / s.losses).toFixed(2),
-            adr: (s.damageDealt / s.roundsPlayed).toFixed(2),
-            win_percentage: ((s.wins / s.roundsPlayed) * 100).toFixed(1), // %
-            top10_percentage: ((s.top10s / s.roundsPlayed) * 100).toFixed(1), // %
-            longest_kill: s.longestKill.toFixed(2), // meters
-            headshot_percentage: ((s.headshotKills / s.kills) * 100).toFixed(1), // %
-            average_weapons: (s.weaponsAcquired / s.roundsPlayed).toFixed(1),
-            average_time: Math.round((s.timeSurvived / s.roundsPlayed) / 60).toString(), // minutes
-            most_kills: s.roundMostKills.toString(),
+            kdr: roundToTwo(s.kills / s.losses),
+            kda: roundToTwo((s.kills + s.assists) / s.losses),
+            adr: roundToTwo(s.damageDealt / s.roundsPlayed),
+            win_percentage: roundToTwo((s.wins / s.roundsPlayed) * 100), // %
+            top10_percentage: roundToTwo((s.top10s / s.roundsPlayed) * 100), // %
+            longest_kill: roundToTwo(s.longestKill), // meters
+            headshot_percentage: roundToTwo((s.headshotKills / s.kills) * 100), // %
+            average_weapons: roundToTwo(s.weaponsAcquired / s.roundsPlayed),
+            average_time: Math.round((s.timeSurvived / s.roundsPlayed) / 60), // minutes
+            most_kills: s.roundMostKills,
           });
         }
       }
