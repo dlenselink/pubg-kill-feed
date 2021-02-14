@@ -49,6 +49,7 @@ body {
   margin-bottom: 24px;
   width: 100%;
   width: -moz-available;
+  -webkit-animation: fadeIn .5s ease;
 
   .searchbar {
     align-items: center;
@@ -111,6 +112,12 @@ body {
     margin-left: -($LoaderWidthHeight / 2);
     margin-top: -($LoaderWidthHeight / 2);
   }
+}
+
+.player-table {
+  animation: fadeIn 1s ease;
+  -webkit-animation: fadeIn 1s ease;
+  
 }
 
 @media (max-width: $MobileBreakpoint) {

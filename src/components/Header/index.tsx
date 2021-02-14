@@ -16,7 +16,6 @@ export const Header = () => {
   const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {    
     const searchbarInput: JQuery<HTMLElement> = $("input[name='searchbarInput']");
     const header: JQuery<HTMLElement> = $(".header");
-    setInput(String(searchbarInput.val()));
     const updatedState: State = {
       currentSeason: "",
       isLoading: false,
@@ -40,7 +39,6 @@ export const Header = () => {
         if (updatedState.currentSeason) {
           return getSeasonStats(player.playerId, updatedState.currentSeason);
         }
-
         throw new Error("The current season is invalid");
       })
       .then((seasonStats: CalculatedStats[]) => {
@@ -52,7 +50,6 @@ export const Header = () => {
           dispatch({ type: "UPDATE_STATE", payload: updatedState });
           return;
         }
-
         throw new Error("Player stats were unavailable");
       })
       .catch((err: Error) => handleError(err));

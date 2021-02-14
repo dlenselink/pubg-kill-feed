@@ -17,12 +17,12 @@ type State = {
 
 /* * * Interfaces * * */
 declare interface SeasonElement {
-  type: string;
-  id: string;
   attributes: {
     isCurrentSeason: boolean;
     isOffseason: boolean;
   }
+  id: string;
+  type: string;
 }
 
 declare interface RawStats {
@@ -64,17 +64,17 @@ declare interface RawStats {
 }
 
 declare interface CalculatedStats {
-  mode: string;
-  kdr: number;
-  kda: number;
   adr: number;
-  win_percentage: number;
-  top10_percentage: number;
-  longest_kill: number;
-  headshot_percentage: number;
-  average_weapons: number;
   average_time: number;
+  average_weapons: number;
+  headshot_percentage: number;
+  kda: number;
+  kdr: number;
+  longest_kill: number;
+  mode: string;
   most_kills: number;
+  top10_percentage: number;
+  win_percentage: number;
 }
 
 declare interface SeasonStatsRaw {
@@ -87,10 +87,10 @@ declare interface SeasonStatsRaw {
 }
 
 declare interface SeasonStatsCalculated {
-  [solo: string]: CalculatedStats;
-  solo_fpp: CalculatedStats;
-  duo: CalculatedStats;
+  [duo: string]: CalculatedStats;
   duo_fpp: CalculatedStats;
+  solo: CalculatedStats;
+  solo_fpp: CalculatedStats;
   squad: CalculatedStats;
   squad_fpp: CalculatedStats;
 }

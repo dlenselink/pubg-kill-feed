@@ -9,6 +9,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { allModesObject } from "Components/Utils";
 
 const StyledTableCell = withStyles((theme: Theme) =>
   createStyles({
@@ -42,28 +43,19 @@ const useStyles = makeStyles({
 export const Player = () => {
   const globalState = useGlobalState();
   const classes = useStyles();
-  const items = [];
-  const modes = {
-    "solo": "Solo",
-    "solo_fpp": "Solo FPP",
-    "duo": "Duo",
-    "duo_fpp": "Duo FPP",
-    "squad": "Squad",
-    "squad_fpp": "Squad FPP",
-  };
-
+  const body = [];
   const s = globalState.playerStats
     ? globalState.playerStats
     : defaultState.playerStats;
 
-  for (const [key, val] of Object.entries(modes) as [string, string][]) {
-    items.push(
+  for (const [key, val] of Object.entries(allModesObject) as [string, string][]) {
+    body.push(
       <StyledTableRow key={key}>
         <TableCell component="th" scope="row">{val}</TableCell>
-        <TableCell align="right">{s[key].kdr}</TableCell>
-        <TableCell align="right">{s[key].adr}</TableCell>
-        <TableCell align="right">{s[key].win_percentage}</TableCell>
-        <TableCell align="right">{s[key].top10_percentage}</TableCell>
+        <TableCell align="right">{s[key].kdr > 0 ? s[key].kdr : ""}</TableCell>
+        <TableCell align="right">{s[key].adr > 0 ? s[key].adr : ""}</TableCell>
+        <TableCell align="right">{s[key].win_percentage > 0 ? s[key].win_percentage : ""}</TableCell>
+        <TableCell align="right">{s[key].top10_percentage > 0 ? s[key].top10_percentage : ""}</TableCell>
       </StyledTableRow>
     );
   } 
@@ -71,7 +63,7 @@ export const Player = () => {
   return (
     <Container>
       <TableContainer component={Paper}>
-        <Table className={classes.table} size="small" aria-label="PUBG season statis">
+        <Table className={`${classes.table} player-table`} size="small" aria-label="PUBG season statis">
           <TableHead>
             <StyledTableRow>
               <StyledTableCell></StyledTableCell>
@@ -82,7 +74,7 @@ export const Player = () => {
             </StyledTableRow>
           </TableHead>
           <TableBody>
-          {items}
+            {body}
           </TableBody>
         </Table>
       </TableContainer>
