@@ -17,7 +17,6 @@ body {
   font-size: $DefaultFontSize;
   flex-direction: column;
   height: 100vh;
-  justify-content: center;
   position: relative;
   width: 100vw;
   
@@ -47,15 +46,25 @@ body {
   height: 22px;
   justify-content: center;
   padding: .75em;
-  position: absolute;
-  top: 0;
+  margin-bottom: 24px;
   width: 100%;
   width: -moz-available;
+  -webkit-animation: fadeIn .5s ease;
 
   .searchbar {
     align-items: center;
     background-color: rgba(0, 0, 0, 0);
     padding: 7px 8px;
+    
+    .input {
+      width: 0px;
+    }
+    
+    .open {
+      caret-color: $ShadowBlack;
+      transition: width 0.3s ease;
+      width: 300px;
+    }
 
     @media (pointer: fine) and (hover: hover) {
       &:hover {
@@ -79,7 +88,6 @@ body {
       outline: 0;
       overflow: hidden;
       transition: width 0.3s ease;
-      width: 0;
  
       &::placeholder {
         color: $ShadowBlack;
@@ -88,19 +96,12 @@ body {
   }
 }
 
-.is-loading {
-  animation: fadeInFaster 3s ease;
-  display: flex !important;
-}
-
 .loader {
   background-color: white;
-  display: none;
   height: 100vh;
-  opacity: 0;
   position: fixed;
   width: 100vw;
-  z-index: -1;
+  z-index: 99;
 
   .image {
     width: $LoaderWidthHeight;
@@ -111,6 +112,12 @@ body {
     margin-left: -($LoaderWidthHeight / 2);
     margin-top: -($LoaderWidthHeight / 2);
   }
+}
+
+.player-table {
+  animation: fadeIn 1s ease;
+  -webkit-animation: fadeIn 1s ease;
+  
 }
 
 @media (max-width: $MobileBreakpoint) {

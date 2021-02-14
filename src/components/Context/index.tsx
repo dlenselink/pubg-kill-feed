@@ -1,17 +1,17 @@
 import React, { createContext, useContext, useReducer } from "react";
 
 const defaultStats: CalculatedStats = {
-  mode: "",
-  kdr: 0,
-  kda: 0,
   adr: 0,
-  win_percentage: 0,
-  top10_percentage: 0,
-  longest_kill: 0,
-  headshot_percentage: 0,
-  average_weapons: 0,
   average_time: 0,
+  average_weapons: 0,
+  headshot_percentage: 0,
+  kda: 0,
+  kdr: 0,
+  longest_kill: 0,
+  mode: "",
   most_kills: 0,
+  top10_percentage: 0,
+  win_percentage: 0,
 };
 
 const defaultState = {
@@ -34,11 +34,9 @@ const GlobalStateContext = createContext<State | undefined>(undefined)
 const GlobalDispatchContext = createContext<Dispatch | undefined>(undefined);
 
 const globalReducer = (state: State, action: Action) => {
-  switch(action.type) {
+  switch(action.type) { // Add specific update types below
     case "UPDATE_STATE": {
-      return {
-        ...state,
-      };
+      return { ...state };
     }
     default:
       throw new Error("Invalid action type (StateProvider)");
@@ -47,7 +45,6 @@ const globalReducer = (state: State, action: Action) => {
 
 const GlobalStateProvider = ({ children }: GlobalProviderProps) => {
   const [state, dispatch] = useReducer(globalReducer, defaultState);
-  
   return (
     <GlobalStateContext.Provider value={state}>
       <GlobalDispatchContext.Provider value={dispatch}>
