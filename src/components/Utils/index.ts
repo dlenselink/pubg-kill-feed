@@ -1,4 +1,4 @@
-export const allModesObject = {
+export const allModesInOrder = {
   "solo": "Solo",
   "solo_fpp": "Solo FPP",
   "duo": "Duo",

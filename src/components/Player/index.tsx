@@ -9,7 +9,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { allModesObject } from "Components/Utils";
+import { allModesInOrder } from "Components/Utils";
 
 const StyledTableCell = withStyles((theme: Theme) =>
   createStyles({
@@ -48,7 +48,7 @@ export const Player = () => {
     ? globalState.playerStats
     : defaultState.playerStats;
 
-  for (const [key, val] of Object.entries(allModesObject) as [string, string][]) {
+  for (const [key, val] of Object.entries(allModesInOrder) as [string, string][]) {
     body.push(
       <StyledTableRow key={key}>
         <TableCell component="th" scope="row">{val}</TableCell>
