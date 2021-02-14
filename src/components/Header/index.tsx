@@ -6,7 +6,7 @@ import $ from "jquery";
 export const Header = () => {
   const dispatch = useGlobalDispatch();
 
-  const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {    
     const searchbarInput: JQuery<HTMLElement> = $("input[name='searchbarInput']");
     const header: JQuery<HTMLElement> = $(".header");
     const input = String(searchbarInput.val());
@@ -26,18 +26,27 @@ export const Header = () => {
         updatedState.currentSeason = season;
         return getPlayerInfo(input);
       })
-      .then(player => {
+      .then((player: PlayerInfo) => {
         updatedState.playerId = player.playerId;
         updatedState.playerName = player.playerName;
         updatedState.recentMatches = player.recentMatches;
-        return getSeasonStats(player.playerId, updatedState.currentSeason);
-      })
-      .then(seasonStats => {
-        for (const stats of seasonStats) {
-          updatedState.playerStats[stats.mode as keyof SeasonStatsCalculated] = stats;
+        if (updatedState.currentSeason) {
+          return getSeasonStats(player.playerId, updatedState.currentSeason);
         }
 
-        dispatch({ type: "UPDATE_STATE", payload: updatedState });
+        throw new Error("The current season is invalid");
+      })
+      .then((seasonStats: CalculatedStats[]) => {
+        if (updatedState.playerStats) {
+          for (const stats of seasonStats) {
+            updatedState.playerStats[stats.mode as keyof SeasonStatsCalculated] = stats;
+          }
+
+          dispatch({ type: "UPDATE_STATE", payload: updatedState });
+          return;
+        }
+
+        throw new Error("Player stats were unavailable");
       })
       .catch((err: Error) => handleError(err));
     }

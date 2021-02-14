@@ -7,11 +7,11 @@ type Action = {
 type Dispatch = (action: Action) => void;
 type GlobalProviderProps = { children: React.ReactNode };
 type State = {
-  currentSeason: string,
+  currentSeason?: string,
   isLoading: boolean,
   playerId?: string,
   playerName?: string,
-  playerStats: SeasonStatsCalculated,
+  playerStats?: SeasonStatsCalculated,
   recentMatches?: Array<string>,
 };
 

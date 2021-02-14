@@ -126,7 +126,7 @@ export const getSeasonStats = (accountId: string, season: string) => {
         if (allStats[mode].roundsPlayed) {
           const s = allStats[mode];
           stats.push({
-            mode: mode,
+            mode: mode.replace(/-/g, '_'),
             kdr: roundToTwo(s.kills / s.losses),
             kda: roundToTwo((s.kills + s.assists) / s.losses),
             adr: roundToTwo(s.damageDealt / s.roundsPlayed),

@@ -1,14 +1,9 @@
 import React from "react";
 import * as ReactDOM from "react-dom";
-import { GlobalStateProvider } from "Components/Context";
 import { App } from "Components/App";
 
 const Index = () => {
-  return (
-    <GlobalStateProvider>
-      <App />
-    </GlobalStateProvider>
-  );
+  return (<App />);
 };
 
 ReactDOM.render(<Index />, document.getElementById("root"));
