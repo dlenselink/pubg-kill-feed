@@ -42,9 +42,31 @@ const useStyles = makeStyles({
 export const Player = () => {
   const globalState = useGlobalState();
   const classes = useStyles();
+  const items = [];
+  const modes = {
+    "solo": "Solo",
+    "solo_fpp": "Solo FPP",
+    "duo": "Duo",
+    "duo_fpp": "Duo FPP",
+    "squad": "Squad",
+    "squad_fpp": "Squad FPP",
+  };
+
   const s = globalState.playerStats
     ? globalState.playerStats
     : defaultState.playerStats;
+
+  for (const [key, val] of Object.entries(modes) as [string, string][]) {
+    items.push(
+      <StyledTableRow key={key}>
+        <TableCell component="th" scope="row">{val}</TableCell>
+        <TableCell align="right">{s[key].kdr}</TableCell>
+        <TableCell align="right">{s[key].adr}</TableCell>
+        <TableCell align="right">{s[key].win_percentage}</TableCell>
+        <TableCell align="right">{s[key].top10_percentage}</TableCell>
+      </StyledTableRow>
+    );
+  } 
   
   return (
     <Container>
@@ -60,48 +82,7 @@ export const Player = () => {
             </StyledTableRow>
           </TableHead>
           <TableBody>
-          <StyledTableRow key={0}>
-            <TableCell component="th" scope="row">Solo</TableCell>
-            <TableCell align="right">{s.solo.kdr}</TableCell>
-            <TableCell align="right">{s.solo.adr}</TableCell>
-            <TableCell align="right">{s.solo.win_percentage}</TableCell>
-            <TableCell align="right">{s.solo.top10_percentage}</TableCell>
-          </StyledTableRow>
-          <StyledTableRow key={1}>
-            <TableCell component="th" scope="row">Solo FPP</TableCell>
-            <TableCell align="right">{s.solo_fpp.kdr}</TableCell>
-            <TableCell align="right">{s.solo_fpp.adr}</TableCell>
-            <TableCell align="right">{s.solo_fpp.win_percentage}</TableCell>
-            <TableCell align="right">{s.solo_fpp.top10_percentage}</TableCell>
-          </StyledTableRow>
-          <StyledTableRow key={2}>
-          <TableCell component="th" scope="row">Duo</TableCell>
-            <TableCell align="right">{s.duo.kdr}</TableCell>
-            <TableCell align="right">{s.duo.adr}</TableCell>
-            <TableCell align="right">{s.duo.win_percentage}</TableCell>
-            <TableCell align="right">{s.duo.top10_percentage}</TableCell>
-          </StyledTableRow>
-          <StyledTableRow key={3}>
-          <TableCell component="th" scope="row">Duo FPP</TableCell>
-            <TableCell align="right">{s.duo_fpp.kdr}</TableCell>
-            <TableCell align="right">{s.duo_fpp.adr}</TableCell>
-            <TableCell align="right">{s.duo_fpp.win_percentage}</TableCell>
-            <TableCell align="right">{s.duo_fpp.top10_percentage}</TableCell>
-          </StyledTableRow>
-          <StyledTableRow key={4}>
-          <TableCell component="th" scope="row">Squad</TableCell>
-            <TableCell align="right">{s.squad.kdr}</TableCell>
-            <TableCell align="right">{s.squad.adr}</TableCell>
-            <TableCell align="right">{s.squad.win_percentage}</TableCell>
-            <TableCell align="right">{s.squad.top10_percentage}</TableCell>
-          </StyledTableRow>
-          <StyledTableRow key={5}>
-          <TableCell component="th" scope="row">Squad FPP</TableCell>
-            <TableCell align="right">{s.squad_fpp.kdr}</TableCell>
-            <TableCell align="right">{s.squad_fpp.adr}</TableCell>
-            <TableCell align="right">{s.squad_fpp.win_percentage}</TableCell>
-            <TableCell align="right">{s.squad_fpp.top10_percentage}</TableCell>
-          </StyledTableRow>
+          {items}
           </TableBody>
         </Table>
       </TableContainer>

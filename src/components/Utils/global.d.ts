@@ -87,10 +87,10 @@ declare interface SeasonStatsRaw {
 }
 
 declare interface SeasonStatsCalculated {
+  [solo: string]: CalculatedStats;
+  solo_fpp: CalculatedStats;
   duo: CalculatedStats;
   duo_fpp: CalculatedStats;
-  solo: CalculatedStats;
-  solo_fpp: CalculatedStats;
   squad: CalculatedStats;
   squad_fpp: CalculatedStats;
 }
