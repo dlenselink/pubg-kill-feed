@@ -95,8 +95,15 @@ body {
   }
 }
 
+.is-loading {
+  animation: fadeInFaster 1s ease;
+  animation-duration: 2s;
+  display: flex !important;
+}
+
 .loader {
   background-color: white;
+  display: none;
   height: 100vh;
   position: fixed;
   width: 100vw;
@@ -116,7 +123,6 @@ body {
 .player-table {
   animation: fadeIn 1s ease;
   -webkit-animation: fadeIn 1s ease;
-  
 }
 
 @media (max-width: $MobileBreakpoint) {
