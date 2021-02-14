@@ -15,7 +15,6 @@ export const Header = () => {
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {    
     const searchbarInput: JQuery<HTMLElement> = $("input[name='searchbarInput']");
-    const header: JQuery<HTMLElement> = $(".header");
     const updatedState: State = {
       currentSeason: "",
       isLoading: false,
@@ -25,7 +24,7 @@ export const Header = () => {
       recentMatches: [],
     };
 
-    if (input && header.is(":hover") && event.key === "Enter") {
+    if (input && event.key === "Enter") {
       searchbarInput.blur();
       getSeasonId()
       .then((season: string) => {
