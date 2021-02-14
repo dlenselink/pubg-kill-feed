@@ -49,7 +49,7 @@ export const Player = () => {
   return (
     <Container>
       <TableContainer component={Paper}>
-        <Table className={classes.table} size="small" aria-label="a dense table">
+        <Table className={classes.table} size="small" aria-label="PUBG season statis">
           <TableHead>
             <StyledTableRow>
               <StyledTableCell></StyledTableCell>

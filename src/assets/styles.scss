@@ -56,6 +56,12 @@ body {
     padding: 7px 8px;
     
     .input {
+      width: 0px;
+    }
+    
+    .open {
+      caret-color: $ShadowBlack;
+      transition: width 0.3s ease;
       width: 300px;
     }
 
