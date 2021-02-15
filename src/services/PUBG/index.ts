@@ -8,6 +8,10 @@ class APIError extends Error {
 }
 
 const token = process.env.PUBG_API_KEY;
+const headers = {
+  "Accept": "application/vnd.api+json",
+  "Authorization": "Bearer " + token,
+};
 
 const roundToTwo = (initial: number) => {
   return Math.round((initial + Number.EPSILON) * 100) / 100;
@@ -21,13 +25,30 @@ export const handleError = (error: Error) => {
   }
 };
 
-export const getPlayerInfo = (playerName: string) => {
-  const url = "https://api.pubg.com/shards/steam/players?filter[playerNames]=" + playerName;
-  const headers = {
-    "Accept": "application/vnd.api+json",
-    "Authorization": "Bearer " + token,
-  };
+export const getMatchStats = (id: string) => {
+  const url = `https://api.pubg.com/shards/steam/matches/${id}`;
+  const result = fetch(url, {
+    method: "GET",
+    headers: headers,
+  })
+  .then(res => {
+    if (res.status === 200) {
+      return res.json();
+    } else if (res.status === 404) {
+      throw new APIError(`No match data found for match ${id}`);
+    }
 
+    throw new APIError("API Error in getMatchStats fetch");
+  })
+  .then(json => {
+    return json;
+  });
+
+  return result;
+};
+
+export const getPlayerInfo = (playerName: string) => {
+  const url = `https://api.pubg.com/shards/steam/players?filter[playerNames]=${playerName}`;
   const result = fetch(url, {
     method: "GET",
     headers: headers,
@@ -66,11 +87,6 @@ export const getPlayerInfo = (playerName: string) => {
 
 export const getSeasonList = () => {
   const url = "https://api.pubg.com/shards/steam/seasons";
-  const headers = {
-    "Accept": "application/vnd.api+json",
-    "Authorization": "Bearer " + token,
-  };
-
   const result = fetch(url, { method: "GET", headers: headers })
     .then(res => {
       if (res.status === 200) {
@@ -96,12 +112,7 @@ export const getSeasonId = () => {
 };
 
 export const getSeasonStats = (accountId: string, season: string) => {
-  const url = "https://api.pubg.com/shards/steam/players/" + accountId + "/seasons/" + season;
-  const headers = {
-    "Accept": "application/vnd.api+json",
-    "Authorization": "Bearer " + token,
-  };
-
+  const url = `https://api.pubg.com/shards/steam/players/${accountId}/seasons/${season}`;
   const result = fetch(url, { method: "GET", headers: headers })
     .then(res => {
       if (res.status === 200) {
