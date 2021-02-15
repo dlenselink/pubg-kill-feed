@@ -19,7 +19,7 @@ body {
   height: 100vh;
   position: relative;
   width: 100vw;
-  
+
   &:before {
     background: url($BackgroundImage) no-repeat center center fixed;
     background-size: cover;
@@ -54,23 +54,38 @@ body {
     align-items: center;
     background-color: rgba(0, 0, 0, 0);
     padding: 7px 8px;
+
+    label {
+      cursor: pointer;
+      -moz-transition: all .25s ease-in;
+      -webkit-transition: all .25s ease-in;
+      transition: all .25s ease-in;
+
+      &.open {
+        color: $ShadowWhite;
+      }
+    }
     
     .input {
+      margin-left: 1em;
       width: 0px;
+
+      &.open {
+        caret-color: $ShadowBlack;
+        transition: width 0.3s ease;
+        width: 50vw;
+      }
     }
     
-    .open {
-      caret-color: $ShadowBlack;
-      transition: width 0.3s ease;
-      width: 300px;
-    }
-
     @media (pointer: fine) and (hover: hover) {
       &:hover {
+        label {
+          color: $ShadowWhite;
+        }
         .input {
           caret-color: $ShadowBlack;
           transition: width 0.3s ease;
-          width: 300px;
+          width: 50vw;
         }
       }
     }
@@ -87,7 +102,7 @@ body {
       outline: 0;
       overflow: hidden;
       transition: width 0.3s ease;
- 
+
       &::placeholder {
         color: $ShadowBlack;
       }
@@ -125,23 +140,20 @@ body {
   -webkit-animation: fadeIn 1s ease;
 }
 
-@media (max-width: $MobileBreakpoint) {
+@media (min-width: $MobileBreakpoint) {
   .header {
     .searchbar {
       height: 32px;
       .input {
-        width: 50vw;
+        width: 0;
       }
     }
   }
-     
+
   @media (pointer: fine) and (hover: hover) {
-    .header {
-      .searchbar:hover {
-        .input {
-          transition: width 0.3s ease;
-          width: 50vw;
-        }
+    &:hover {
+      .input {
+        width: 250px;
       }
     }
   }

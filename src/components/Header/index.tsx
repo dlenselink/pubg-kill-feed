@@ -3,15 +3,9 @@ import { defaultState, useGlobalDispatch } from "Components/Context";
 import { getPlayerInfo, getSeasonId, getSeasonStats, handleError } from "../../services/PUBG";
 import $ from "jquery";
 
-const classNames = require('classnames');
-
 export const Header = () => {
   const dispatch = useGlobalDispatch();
   const [input, setInput] = useState("");
-  const inputClassNames = classNames({
-    "input": true,
-    "open": input,
-  });
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
     const searchbarInput: JQuery<HTMLElement> = $("input[name='searchbarInput']");
@@ -50,8 +44,9 @@ export const Header = () => {
   return(
     <div className="header">
       <div className="searchbar">
-        <label>
-          <input className={inputClassNames} value={input} onChange={e => setInput(e.target.value)} name="searchbarInput" onKeyPress={handleKeyPress} placeholder="Search..." type="text" />
+        <label className={input ? "open" : ""}>
+          Search
+          <input className={`input ${input ? "open" : ""}`} value={input} onChange={e => setInput(e.target.value)} name="searchbarInput" onKeyPress={handleKeyPress} type="text" />
         </label>
         <svg className="bi bi-search icon" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
           <path fillRule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clipRule="evenodd"/>
