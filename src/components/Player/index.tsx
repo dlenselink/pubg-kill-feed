@@ -45,8 +45,8 @@ export const Player = () => {
   const classes = useStyles();
   const body = [];
   const s = globalState.playerStats
-    ? globalState.playerStats
-    : defaultState.playerStats;
+    ? globalState.playerStats as SeasonStatsCalculated
+    : defaultState.playerStats as SeasonStatsCalculated;
 
   for (const [key, val] of Object.entries(allModesInOrder) as [string, string][]) {
     body.push(

@@ -15,14 +15,7 @@ export const Header = () => {
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
     const searchbarInput: JQuery<HTMLElement> = $("input[name='searchbarInput']");
-    const payload: State = {
-      currentSeason: "",
-      isLoading: false,
-      playerId: "",
-      playerName: "",
-      playerStats: defaultState.playerStats,
-      recentMatches: [],
-    };
+    const payload: State = defaultState;
 
     if (input && event.key === "Enter") {
       searchbarInput.blur();

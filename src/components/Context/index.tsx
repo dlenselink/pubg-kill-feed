@@ -14,7 +14,7 @@ const defaultStats: CalculatedStats = {
   win_percentage: 0,
 };
 
-const defaultState = {
+export const defaultState: State = {
   currentSeason: "",
   isLoading: false,
   playerId: "",
@@ -43,7 +43,7 @@ const globalReducer = (state: State, action: Action) => {
   }
 };
 
-const GlobalStateProvider = ({ children }: GlobalProviderProps) => {
+export const GlobalStateProvider = ({ children }: GlobalProviderProps) => {
   const [state, dispatch] = useReducer(globalReducer, defaultState);
   return (
     <GlobalStateContext.Provider value={state}>
@@ -54,7 +54,7 @@ const GlobalStateProvider = ({ children }: GlobalProviderProps) => {
   );
 };
 
-const useGlobalState = () => {
+export const useGlobalState = () => {
   const state = useContext(GlobalStateContext);
   if (state === undefined) {
     throw new Error('useGlobalState must be used within a GlobalStateProvider');
@@ -62,12 +62,10 @@ const useGlobalState = () => {
   return state;
 };
 
-const useGlobalDispatch = () => {
+export const useGlobalDispatch = () => {
   const dispatch = useContext(GlobalDispatchContext);
   if (dispatch === undefined) {
     throw new Error('useGlobalDispatch must be used within a GlobalStateProvider');
   }
   return dispatch;
 };
-
-export { defaultState, useGlobalState, useGlobalDispatch, GlobalStateProvider };
