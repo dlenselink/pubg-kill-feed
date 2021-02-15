@@ -57,9 +57,9 @@ body {
 
     label {
       cursor: pointer;
-      -moz-transition: all .25s ease-in;
-      -webkit-transition: all .25s ease-in;
-      transition: all .25s ease-in;
+      -moz-transition: all .25s ease;
+      -webkit-transition: all .25s ease;
+      transition: all .25s ease;
 
       &.open {
         color: $ShadowWhite;
@@ -68,6 +68,7 @@ body {
     
     .input {
       margin-left: 1em;
+      max-width: 500px;
       width: 0px;
 
       &.open {
