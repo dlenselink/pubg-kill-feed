@@ -32,6 +32,7 @@ export const Header = () => {
           for (const stats of seasonStats) {
             payload.playerStats[stats.mode as keyof SeasonStatsCalculated] = stats;
           }
+          console.log(payload); // Log updated player info
           dispatch({ type: "UPDATE_STATE", payload: payload });
           return;
         }

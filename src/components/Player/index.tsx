@@ -44,18 +44,18 @@ export const Player = () => {
   const globalState = useGlobalState();
   const classes = useStyles();
   const body = [];
-  const s = globalState.playerStats
+  const stats = globalState.playerStats
     ? globalState.playerStats as SeasonStatsCalculated
     : defaultState.playerStats as SeasonStatsCalculated;
 
-  for (const [key, val] of Object.entries(allModesInOrder) as [string, string][]) {
+  for (const [key, val] of Object.entries(allModesInOrder) as ObjectEntries) {
     body.push(
       <StyledTableRow key={key}>
         <TableCell component="th" scope="row">{val}</TableCell>
-        <TableCell align="right">{s[key].kdr > 0 ? s[key].kdr : ""}</TableCell>
-        <TableCell align="right">{s[key].adr > 0 ? s[key].adr : ""}</TableCell>
-        <TableCell align="right">{s[key].win_percentage > 0 ? s[key].win_percentage : ""}</TableCell>
-        <TableCell align="right">{s[key].top10_percentage > 0 ? s[key].top10_percentage : ""}</TableCell>
+        <TableCell align="right">{stats[key].kdr > 0 ? stats[key].kdr : ""}</TableCell>
+        <TableCell align="right">{stats[key].adr > 0 ? stats[key].adr : ""}</TableCell>
+        <TableCell align="right">{stats[key].win_percentage > 0 ? stats[key].win_percentage : ""}</TableCell>
+        <TableCell align="right">{stats[key].top10_percentage > 0 ? stats[key].top10_percentage : ""}</TableCell>
       </StyledTableRow>
     );
   } 

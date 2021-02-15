@@ -6,6 +6,7 @@ type Action = {
 
 type Dispatch = (action: Action) => void;
 type GlobalProviderProps = { children: React.ReactNode };
+type ObjectEntries = [string, string][];
 type State = {
   currentSeason?: string,
   isLoading: boolean,

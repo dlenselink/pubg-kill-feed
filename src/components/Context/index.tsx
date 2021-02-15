@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useReducer } from "react";
+import React, { createContext, useContext, useReducer } from "react";
 
 const defaultStats: CalculatedStats = {
   adr: 0,
@@ -45,10 +45,6 @@ const globalReducer = (state: State, action: Action) => {
 
 export const GlobalStateProvider = ({ children }: GlobalProviderProps) => {
   const [state, dispatch] = useReducer(globalReducer, defaultState);
-
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
 
   return (
     <GlobalStateContext.Provider value={state}>
