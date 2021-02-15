@@ -19,7 +19,7 @@ body {
   height: 100vh;
   position: relative;
   width: 100vw;
-  
+
   &:before {
     background: url($BackgroundImage) no-repeat center center fixed;
     background-size: cover;
@@ -47,7 +47,6 @@ body {
   justify-content: center;
   padding: .75em;
   margin-bottom: 24px;
-  width: 100%;
   width: -moz-available;
   -webkit-animation: fadeIn .5s ease;
 
@@ -55,23 +54,39 @@ body {
     align-items: center;
     background-color: rgba(0, 0, 0, 0);
     padding: 7px 8px;
+
+    label {
+      cursor: pointer;
+      -moz-transition: all .25s ease;
+      -webkit-transition: all .25s ease;
+      transition: all .25s ease;
+
+      &.open {
+        color: $ShadowWhite;
+      }
+    }
     
     .input {
+      margin-left: 1em;
+      max-width: 500px;
       width: 0px;
+
+      &.open {
+        caret-color: $ShadowBlack;
+        transition: width 0.3s ease;
+        width: 50vw;
+      }
     }
     
-    .open {
-      caret-color: $ShadowBlack;
-      transition: width 0.3s ease;
-      width: 300px;
-    }
-
     @media (pointer: fine) and (hover: hover) {
       &:hover {
+        label {
+          color: $ShadowWhite;
+        }
         .input {
           caret-color: $ShadowBlack;
           transition: width 0.3s ease;
-          width: 300px;
+          width: 50vw;
         }
       }
     }
@@ -88,7 +103,7 @@ body {
       outline: 0;
       overflow: hidden;
       transition: width 0.3s ease;
- 
+
       &::placeholder {
         color: $ShadowBlack;
       }
@@ -96,8 +111,15 @@ body {
   }
 }
 
+.is-loading {
+  animation: fadeInFaster 1s ease;
+  animation-duration: 2s;
+  display: flex !important;
+}
+
 .loader {
   background-color: white;
+  display: none;
   height: 100vh;
   position: fixed;
   width: 100vw;
@@ -117,26 +139,22 @@ body {
 .player-table {
   animation: fadeIn 1s ease;
   -webkit-animation: fadeIn 1s ease;
-  
 }
 
-@media (max-width: $MobileBreakpoint) {
+@media (min-width: $MobileBreakpoint) {
   .header {
     .searchbar {
       height: 32px;
       .input {
-        width: 50vw;
+        width: 0;
       }
     }
   }
-     
+
   @media (pointer: fine) and (hover: hover) {
-    .header {
-      .searchbar:hover {
-        .input {
-          transition: width 0.3s ease;
-          width: 50vw;
-        }
+    &:hover {
+      .input {
+        width: 250px;
       }
     }
   }

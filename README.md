@@ -18,6 +18,9 @@ You can run eslint on the command line as follows: `npm test`.
 
 Do not run `npm run build` locally when testing build configs, this will overwrite your api key .env. Use `npm run compile` instead.
 
+[Link to Production App](https://pubg-kill-feed.netlify.app/)
+[Link to Staging App](https://pubg-kill-feed-dev.netlify.app/)
+
 ## Versions
 
 - v0.0.1: Initial build of app using React Class components
